@@ -200,6 +200,7 @@
 
 @code
 {
+	public bool SuccessDownload { get; set; }
 	[Inject] IBlazorDownloadFileService BlazorDownloadFileService { get; set; }
 	#region Overrides of ComponentBase
 
@@ -214,14 +215,16 @@
 
 	async Task DownloadMap()
 	{
-		string jsonMap = JsonSerializer.Serialize(this.map);
+		string jsonMap = JsonSerializer.Serialize(this.controllerMap.saveMap());
 		var bytes = Encoding.ASCII.GetBytes(jsonMap);
-        var task = await BlazorDownloadFileService.DownloadFile("testdownload.txt", bytes.ToList(),CancellationToken.None,"application/octet-stream");
-        if (task.Succeeded)
-        {
-        }
-        else
-        {
-        }
-    }
+		var task = await BlazorDownloadFileService.DownloadFile(this.map.Name + ".map", bytes,CancellationToken.None,"application/octet-stream");
+		if (task.Succeeded)
+		{
+			this.SuccessDownload = true;
+		}
+		else
+		{
+			this.SuccessDownload = false;
+		}
+	}
 }

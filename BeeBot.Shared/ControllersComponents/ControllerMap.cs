@@ -61,6 +61,22 @@ namespace BeeBot.Shared.ControllersComponents
 			this.OnChange?.Invoke();
         }
 
+		public Map saveMap()
+        {
+			this.map.Blocks.Clear();
+            for (int i = 0; i < this.map.sizeX; i++)
+            {
+                for (int j = 0; j < this.map.sizeY; j++)
+                {
+					if (this.playingArea.playingArea[i][j].type != BlockType.None)
+                    {
+						this.map.Blocks.Add(this.playingArea.playingArea[i][j]);
+                    }
+                }
+            }
+			return this.map;
+        }
+
 		public event Action? OnChange;
 	}
 }
