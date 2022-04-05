@@ -1,0 +1,76 @@
+﻿@inject ControllerMap controllerMap
+@inject Bee bee
+
+<div class="card m-3 border border-3 border-dark">
+	<div class="card-body border-bottom border-3 border-dark">
+		<div class="row d-flex justify-content-center">
+			Zmen mapu
+		</div>
+	</div
+	<div class="card-body border-3 border-dark">
+		<div class="row d-flex justify-content-center p-1">
+			@if (isLoading)
+			{
+				<p>Nacitanie mapy</p>
+			} else
+			{
+				<InputFile OnChange="LoadMap" accept=".map" />	
+			}
+			@if(SuccesedLoad == true)
+			{
+				<div class="card mt-3 border border-3 border-dark bg-success">
+					<div class="card-body border-3 border-dark">
+						<div class="row p-1">
+							<div class="col-10 d-flex align-items-center justify-content-center">
+								Mapa bola úspešne zmenena!
+							</div>							
+							<div class="col-2 d-flex align-items-center justify-content-center">
+								<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => SuccesedLoad = null"></i>
+							</div>							
+						</div>
+					</div>
+				</div>
+				
+			} else if (SuccesedLoad == false)
+			{
+				<div class="card mt-3 border border-3 border-dark bg-success">
+					<div class="card-body border-3 border-dark">
+						<div class="row d-flex p-1">
+							<div class="col-10 d-flex align-items-center justify-content-center">
+								Chyba pri načitani mapy: @ErrorLoad
+							</div>							
+							<div class="col-2 d-flex align-items-center justify-content-center">
+								<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => SuccesedLoad = null"></i>
+							</div>							
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+@code{
+	private IBrowserFile loadedFile;
+	private bool isLoading;
+	private bool? SuccesedLoad = null;
+	private string ErrorLoad = "";
+
+	async Task LoadMap(InputFileChangeEventArgs e){
+		this.bee.Reset();
+		this.isLoading = true;
+		this.SuccesedLoad = null;
+		try
+		{
+			loadedFile = e.File;
+			Map loadedMap = await JsonSerializer.DeserializeAsync<Map>(loadedFile.OpenReadStream());
+			controllerMap.changeMap(loadedMap);
+			this.SuccesedLoad = true;
+		} catch (Exception ex)
+		{
+			this.SuccesedLoad = false;
+			ErrorLoad = ex.Message;
+		}
+		this.isLoading = false;
+	}
+}

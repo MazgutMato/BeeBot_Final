@@ -25,7 +25,7 @@
 					</image>
 				</g>				
 				<g>				
-				@switch (this.playingArea.playingArea[mapX][mapY].type)
+				@switch (this.playingArea.playArea[mapX][mapY].type)
 				{
 					case BlockType.Barrier:
 						<image href="@(this.map.BarrierFile == "" ? "/images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
