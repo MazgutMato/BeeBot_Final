@@ -1,0 +1,90 @@
+﻿@inject Map map
+@inject PlayingArea playingArea
+@inject ControllerCommands controllerCommands
+@inject ControllerMap controllerMap
+
+
+<svg viewBox="-0.1 -0.1 @(playingArea.sizeX*100).2 @(playingArea.sizeY*100).2" style="width: auto; height: auto; max-width: 100%; max-height: 85vh">
+	<g>
+		@for (int y = 0; y < playingArea.sizeY; y++)
+		{
+			@for (int x = 0; x < playingArea.sizeX; x++)
+			{
+				int mapX = x;
+				int mapY = y;
+				<g>
+					<image href="@(this.map.RectangleFile == "" ? "/images/defaultMap/rectangle.svg" :  this.map.RectangleFile)"
+					   x="@(x*100)"
+					   y="@(y*100)"
+					   height="100"
+					   width="100"
+					   @onclick="() => {
+							if (this.playingArea.mode == Mode.Editing)
+								this.controllerMap.changeRectangleType(mapX,mapY);
+							}">
+					</image>
+				</g>				
+				<g>				
+				@switch (this.playingArea.playingArea[mapX][mapY].type)
+				{
+					case BlockType.Barrier:
+						<image href="@(this.map.BarrierFile == "" ? "/images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
+						   x="@(x*100)"
+						   y="@(y*100)"
+						   height="100"
+						   width="100"
+						   @onclick="() => {
+                            if (this.playingArea.mode == Mode.Editing)
+                                this.controllerMap.changeRectangleType(mapX,mapY);
+                            }"></image>
+						break;
+					case BlockType.Finish:
+						<image href="@(this.map.FinishFile == "" ? "/images/defaultMap/finish.svg" :  this.map.FinishFile)"
+						   x="@(x*100)"
+						   y="@(y*100)"
+						   height="100"
+						   width="100"
+						   @onclick="() => {
+                            if (this.playingArea.mode == Mode.Editing)
+                                this.controllerMap.changeRectangleType(mapX,mapY);
+                            }"></image>
+						break;
+					case BlockType.Reward:
+						<image href="@(this.map.RewardFile == "" ? "/images/defaultMap/reward.svg" :  this.map.RewardFile)"
+						   x="@(x*100)"
+						   y="@(y*100)"
+						   height="100"
+						   width="100"
+						   @onclick="() => {
+                            if (this.playingArea.mode == Mode.Editing)
+                                this.controllerMap.changeRectangleType(mapX,mapY);
+                            }"></image>
+							break;
+					case BlockType.None:
+							break;
+					}
+				</g>
+			}
+		}
+	</g>
+
+	@*character*@
+	<BeeCharacter />
+
+</svg>
+
+@code
+{
+
+	#region Overrides of ComponentBase
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+
+		this.controllerCommands.OnChanged += this.StateHasChanged;
+		this.controllerMap.OnChange += this.StateHasChanged;
+	}
+
+	#endregion
+}

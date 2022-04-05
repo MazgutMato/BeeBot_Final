@@ -1,0 +1,95 @@
+﻿@inject Map map
+@inject ControllerCommands controllerCommands
+@inject Bee bee
+
+@*bee rotate animation*@
+@if (this.bee.animation is Rotate)
+{
+	<style type="text/css">
+		#bee-move {
+			animation-timing-function: linear;
+			animation: rotate @(this.bee.animation.time)000ms;
+			animation-iteration-count: 1;
+			transform-origin: @(this.bee.positionX*100 + 50)px @(this.bee.positionY*100 + 50)px;
+		}
+
+		@@keyframes rotate {
+			0% {
+				transform: rotate(@( 
+					(((Rotate)this.bee.animation).oldAngle) == 0 && (((Rotate)this.bee.animation).newAngle) == 270 ? 
+					360 : (((Rotate)this.bee.animation).oldAngle) 
+				)deg);
+			}
+
+			100% {
+				transform: rotate(@( 
+					(((Rotate)this.bee.animation).newAngle) == 0 && (((Rotate)this.bee.animation).oldAngle) == 270 ? 
+					360 : (((Rotate)this.bee.animation).newAngle) 
+				)deg);
+			}
+		}
+	</style>
+}
+
+@*bee move animation*@
+@if(this.bee.animation is Move)
+{
+
+	<style type="text/css">
+		#bee-move {
+			animation-timing-function: linear;
+			offset-path: path('@(((Move)this.bee.animation).path)');
+			animation: move @(this.bee.animation.time)000ms;
+			animation-iteration-count: 1;
+			transform-origin: @(this.bee.positionX*100 + 50)px @(this.bee.positionY*100 + 50)px;
+			transform: rotate(90deg);
+		}
+
+		@@keyframes move {
+			0% {
+				offset-distance: 0%;
+			}
+
+			100% {
+				offset-distance: 100%;
+			}
+		}
+	</style>
+
+	@*svg bee path*@
+	@*<path
+		style="fill:none;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-opacity:1" 
+		d="@(this.bee.animation.path)"/>*@
+}
+
+@*svg bee*@
+@if(this.bee.animation is null){
+	<g transform="rotate(@((int)this.bee.rotation),@(this.bee.positionX*100 + 50),@(this.bee.positionY*100 + 50))">
+		<image id="bee-move" 
+			href="images\character.png" 
+			width="80" height="80" 
+			x="@(this.bee.positionX*100 + 10)" y="@(this.bee.positionY*100 + 10)"/>
+	</g>
+} else
+{
+	<image id="bee-move"
+	   href="images\character.png"
+	   width="80" height="80"
+	   x="@(this.bee.positionX*100 + 10)" y="@(this.bee.positionY*100 + 10)" />
+}
+
+
+
+@code {
+	
+	#region Overrides of ComponentBase
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+
+		this.controllerCommands.OnChanged += this.StateHasChanged;
+	}
+
+	#endregion
+}

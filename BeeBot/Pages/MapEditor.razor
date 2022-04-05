@@ -1,0 +1,227 @@
+﻿@page "/mapEditor"
+@inject Bee bee
+@inject PlayingArea playingArea
+@inject Map map
+@inject ControllerMap controllerMap
+
+<div class="nadpis p-2 m-3 border border-dark rounded border-3">
+	Uprav mapu
+</div>
+<div class="container pozadie border border-dark rounded border-3">
+	<div class="row">
+
+		@*Mapa*@
+		<div class="col-12 col-xl-8">
+			<div class="row">
+
+				@*Zmena mena*@
+				<div class="col-6 panel">				
+					<div class="card m-3 border border-3 border-dark">
+						<div class="card-body">
+							<EditForm Model="@this.map">
+								<label class="d-flex justify-content-center mb-1">Názov mapy</label>
+								<InputText id="name" class="form-control" @bind-Value="this.map.Name" />
+								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen nazov mapy</button>
+							</EditForm>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			@*Nastavenia mapy*@
+			<div class="col-12 panel">
+				<div class="card m-3 border border-3 border-dark">
+					<div class="card-body">
+						<div class="row  p-1">
+							<div class="row">
+								<div class="col-2">
+									<p>Nova mapa</p>
+									<button class="btn btn-dark btn-outline-warning">
+										<i class="bi bi-file-earmark-plus"></i>
+									</button>
+								</div>
+								<div class="col-2">
+									<p>Ulož mapu</p>
+									<button class="btn btn-dark btn-outline-warning" @onclick="DownloadMap">
+										<i class="bi bi-download"></i>
+									</button>
+								</div>
+								<div class="col-2">
+									<p>Zmaž mapu</p>
+									<button class="btn btn-dark btn-outline-warning">
+										<i class="bi bi-trash"></i>
+									</button>
+								</div>
+								<div class="col-3">
+									<p>Šírka mapy: @map.sizeX</p>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.increaseX()">
+										<i class="bi bi-plus-lg"></i>
+									</button>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.decreaseX()">
+										<i class="bi bi-dash"></i>
+									</button>
+								</div>
+								<div class="col-3">
+									<p>Výška mapy: @map.sizeY</p>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.increaseY()">
+										<i class="bi bi-plus-lg"></i>
+									</button>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.decreaseY()">
+										<i class="bi bi-dash"></i>
+									</button>
+								</div>									
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row d-flex justify-content-center m-3">
+				<BeeBotMap/>
+			</div>
+		</div>
+
+		@*Edit mapy*@
+		<div class="col-xl-4 panel">
+			<div class="card m-3 border border-3 border-dark">
+				<div class="card-body">
+					<p>Vyber kliknutím na obrázok a pridaj na mapu:</p>
+
+					<div class="row p-2 m-1 border border-dark rounded border-3">
+						<p>Prekazka</p>
+						<div class="col-5">
+							<svg style="width: auto; height: auto;">
+								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
+											@(this.controllerMap.BlockEditor == BlockType.Barrier ? "5px" : "1px");
+											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
+								<image href="@(this.map.BarrierFile == "" ? "/images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
+									   x="10"
+									   y="10"
+									   height="100"
+									   width="100"
+									   @onclick="() => controllerMap.BlockEditor = BlockType.Barrier"></image>
+							</svg>
+						</div>
+						<div class="col-7">
+							<EditForm Model="@this.map">
+								<div class="col-12">
+									<label>Zadaj link!</label>
+									<InputText id="barrier" class="form-control" @bind-Value="this.map.BarrierFile" />
+								</div>								
+								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
+							</EditForm>
+						</div>
+					</div>
+
+					<div class="row p-2 m-1 border border-dark rounded border-3">
+						<p>Ciel</p>
+						<div class="col-5">
+							<svg style="width: auto; height: auto;">
+								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
+											@(this.controllerMap.BlockEditor == BlockType.Finish ? "5px" : "1px");
+											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
+								<image href="@(this.map.FinishFile == "" ? "/images/defaultMap/finish.svg" :  this.map.FinishFile)"
+									   height="100"
+									   width="100"
+									   x="10"
+									   y="10"
+									   @onclick="() => controllerMap.BlockEditor = BlockType.Finish"></image>
+							</svg>
+						</div>
+						<div class="col-7">
+							<EditForm Model="@this.map">
+								<div class="col-12">
+									<label>Zadaj link!</label>
+									<InputText id="barrier" class="form-control" @bind-Value="this.map.FinishFile" />
+								</div>
+								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
+							</EditForm>
+						</div>
+					</div>
+
+					<div class="row p-2 m-1 border border-dark rounded border-3">
+						<p>Prázdne pole</p>
+						<div class="col-5">
+							<svg style="width: auto; height: auto;">
+								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
+									@(this.controllerMap.BlockEditor == BlockType.None ? "5px" : "1px"); ;
+									opacity: 1; fill: white" vector-effect="non-scaling-stroke"
+									  @onclick="() => controllerMap.BlockEditor = BlockType.None" />
+								<image href="@(this.map.RectangleFile == "" ? "/images/defaultMap/rectangle.svg" :  this.map.RectangleFile)"
+									   height="100"
+									   width="100"
+									   x="10"
+									   y="10"
+									   @onclick="() => controllerMap.BlockEditor = BlockType.None"></image>
+							</svg>
+						</div>
+						<div class="col-7 small">
+							<EditForm Model="@this.map">
+								<div class="col-12">
+									<label>Zadaj link!</label>
+									<InputText id="barrier" class="form-control" @bind-Value="this.map.RectangleFile" />
+								</div>
+								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
+							</EditForm>
+						</div>
+					</div>
+
+					<div class="row p-2 m-1 border border-dark rounded border-3">
+						<p>Odmena</p>
+						<div class="col-5">
+							<svg style="width: auto; height: auto;">
+								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
+											@(this.controllerMap.BlockEditor == BlockType.Reward ? "5px" : "1px");
+											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
+								<image href="@(this.map.RewardFile == "" ? "/images/defaultMap/reward.svg" :  this.map.RewardFile)"
+									   height="100"
+									   width="100"
+									   x="10"
+									   y="10"
+									   @onclick="() => controllerMap.BlockEditor = BlockType.Reward"></image>
+							</svg>
+						</div>
+						<div class="col-7">
+							<EditForm Model="@this.map">
+								<div class="col-12">
+									<label>Zadaj link!</label>
+									<InputText id="barrier" class="form-control" @bind-Value="this.map.RewardFile" />
+								</div>
+								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
+							</EditForm>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+@code
+{
+	[Inject] IBlazorDownloadFileService BlazorDownloadFileService { get; set; }
+	#region Overrides of ComponentBase
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		this.bee.Reset();
+		this.playingArea.mode = Mode.Editing;
+	}
+
+	#endregion
+
+	async Task DownloadMap()
+	{
+		string jsonMap = JsonSerializer.Serialize(this.map);
+		var bytes = Encoding.ASCII.GetBytes(jsonMap);
+        var task = await BlazorDownloadFileService.DownloadFile("testdownload.txt", bytes.ToList(),CancellationToken.None,"application/octet-stream");
+        if (task.Succeeded)
+        {
+        }
+        else
+        {
+        }
+    }
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg959"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="background.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview961"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4805976"
+     inkscape:cx="223.89607"
+     inkscape:cy="179.31948"
+     inkscape:window-width="1124"
+     inkscape:window-height="1008"
+     inkscape:window-x="-1133"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs956">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4817"
+       id="linearGradient5297"
+       gradientUnits="userSpaceOnUse"
+       x1="400.28879"
+       y1="899.22021"
+       x2="398.85919"
+       y2="8.9491419e-09"
+       gradientTransform="matrix(0.125,0,0,0.1111111,-4.7851562e-6,-2.7734374e-5)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4817">
+      <stop
+         style="stop-color:#ff2a7f;stop-opacity:1;"
+         offset="0"
+         id="stop4813" />
+      <stop
+         style="stop-color:#ff2a7f;stop-opacity:0;"
+         offset="1"
+         id="stop4815" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:url(#linearGradient5297);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.400575;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="pozadie"
+       width="100"
+       height="100"
+       x="0"
+       y="5.6843419e-14" />
+  </g>
+</svg>

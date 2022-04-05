@@ -1,0 +1,42 @@
+﻿@page "/" 
+@inject Map map;
+@inject PlayingArea playingArea
+@inject ControllerMap controllerMap;
+@inject ControllerCommands controllerCommands;
+
+<PageTitle>BeeBot</PageTitle>
+
+<div class="nadpis p-2 m-3 border border-dark rounded border-3">
+	@this.map.Description
+</div>
+
+<div class="container pozadie border border-dark rounded border-3">
+	<div class="row">
+
+		@*mapa*@
+		<div class="col-12 col-xl-8">
+			<div class="row m-3 d-flex align-content-center position-static">
+				<BeeBotMap/>
+			</div>
+		</div>
+
+		<div class="col-12 col-xl-4 panel">
+
+			@*select map*@
+			<div class="card m-3 border border-3 border-dark">
+				<div class="card-body border-3 border-dark">
+					<div class="row d-flex justify-content-center p-1">
+						Výber mapy
+						<InputFile>
+
+						</InputFile>
+					</div>
+				</div>
+			</div>
+
+			<ComandLine/>
+
+		</div>
+
+	</div>
+</div>
