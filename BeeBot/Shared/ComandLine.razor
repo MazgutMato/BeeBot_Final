@@ -74,16 +74,28 @@ else if (this.StateOfGame == false)
 					switch (controllerCommands.Commands[i])
 					{
 						case Command.moveForward:
-						<img src="images/commands/up.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)" />
+						<img src="images/commands/up.svg" class="command command_remove" @onclick="() => {
+							controllerCommands.CancellationToken?.Cancel();
+							controllerCommands.Commands.RemoveAt(cisloPrikazu);
+							}" />
 							break;
 						case Command.moveBack:
-							<img src="images/commands/down.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)"/>
+							<img src="images/commands/down.svg" class="command command_remove" @onclick="() => {
+							controllerCommands.CancellationToken?.Cancel();
+							controllerCommands.Commands.RemoveAt(cisloPrikazu);
+							}"/>
 							break;
 						case Command.rotateLeft:
-							<img src="images/commands/rotate_left.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)"/>
+							<img src="images/commands/rotate_left.svg" class="command command_remove" @onclick="() => {
+							controllerCommands.CancellationToken?.Cancel();
+							controllerCommands.Commands.RemoveAt(cisloPrikazu);
+							}"/>
 							break;
 						case Command.rotateRight:
-							<img src="images/commands/rotate_right.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)"/>
+							<img src="images/commands/rotate_right.svg" class="command command_remove" @onclick="() => {
+							controllerCommands.CancellationToken?.Cancel();
+							controllerCommands.Commands.RemoveAt(cisloPrikazu);
+							}"/>
 							break;
 					}	
 				}													
