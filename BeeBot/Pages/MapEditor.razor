@@ -12,18 +12,16 @@
 
 		@*Mapa*@
 		<div class="col-12 col-xl-8">
-			<div class="row">
 
-				@*Zmena mena*@
-				<div class="col-6 panel">				
-					<div class="card m-3 border border-3 border-dark">
-						<div class="card-body">
-							<EditForm Model="@this.map">
-								<label class="d-flex justify-content-center mb-1">Názov mapy</label>
-								<InputText id="name" class="form-control" @bind-Value="this.map.Name" />
-								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen nazov mapy</button>
-							</EditForm>
-						</div>
+			@*Zmena popisu*@
+			<div class="col-12 panel">
+				<div class="card m-3 border border-3 border-dark">
+					<div class="card-body">
+						<EditForm Model="@this.map">
+							<label class="d-flex justify-content-center mb-1">Popis mapy</label>
+							<InputText id="name" class="form-control" @bind-Value="this.map.Description" />
+							<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen popis mapy</button>
+						</EditForm>
 					</div>
 				</div>
 			</div>
@@ -36,7 +34,7 @@
 							<div class="row">
 								<div class="col-2">
 									<p>Nova mapa</p>
-									<button class="btn btn-dark btn-outline-warning">
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.newMap()">
 										<i class="bi bi-file-earmark-plus"></i>
 									</button>
 								</div>
@@ -47,8 +45,8 @@
 									</button>
 								</div>
 								<div class="col-2">
-									<p>Zmaž mapu</p>
-									<button class="btn btn-dark btn-outline-warning">
+									<p>Zmaž plochu</p>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.deletePlayArea()">
 										<i class="bi bi-trash"></i>
 									</button>
 								</div>
@@ -82,6 +80,21 @@
 
 		@*Edit mapy*@
 		<div class="col-xl-4 panel">
+
+			@*Zmena mena*@
+			<div class="card m-3 border border-3 border-dark">
+				<div class="card-body">
+					<EditForm Model="@this.map">
+						<label class="d-flex justify-content-center mb-1">Názov mapy</label>
+						<InputText id="name" class="form-control" @bind-Value="this.map.Name" />
+						<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen nazov mapy</button>
+					</EditForm>
+				</div>
+			</div>
+
+			@*Zmena mapy*@
+			<MapChange />
+
 			<div class="card m-3 border border-3 border-dark">
 				<div class="card-body">
 					<p>Vyber kliknutím na obrázok a pridaj na mapu:</p>
@@ -207,6 +220,7 @@
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
+		this.controllerMap.OnChange += this.StateHasChanged;
 		this.bee.Reset();
 		this.playingArea.mode = Mode.Editing;
 	}

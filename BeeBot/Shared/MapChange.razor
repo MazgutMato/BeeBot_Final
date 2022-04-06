@@ -1,5 +1,5 @@
 ﻿@inject ControllerMap controllerMap
-@inject Bee bee
+@inject ControllerCommands controllerCommands
 
 <div class="card m-3 border border-3 border-dark">
 	<div class="card-body border-bottom border-3 border-dark">
@@ -57,7 +57,7 @@
 	private string ErrorLoad = "";
 
 	async Task LoadMap(InputFileChangeEventArgs e){
-		this.bee.Reset();
+		this.controllerCommands.deleteCommands();
 		this.isLoading = true;
 		this.SuccesedLoad = null;
 		try

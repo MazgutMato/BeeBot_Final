@@ -56,8 +56,14 @@ namespace BeeBot.Shared.ControllersComponents
             {
 				this.playingArea.playArea[x][y].type = BlockType.Reward;
 				this.playingArea.uncollectedReward.Add(this.playingArea.playArea[x][y]);
+			}else if (this.BlockEditor != BlockType.Reward && this.playingArea.playArea[x][y].type == BlockType.Reward)
+			{
+				this.playingArea.uncollectedReward.Remove(this.playingArea.playArea[x][y]);
+				this.playingArea.playArea[x][y].type = this.BlockEditor;
+			} else
+            {
+				this.playingArea.playArea[x][y].type = this.BlockEditor;
 			}
-			this.playingArea.playArea[x][y].type = this.BlockEditor;
 			this.OnChange?.Invoke();
         }
 
@@ -90,6 +96,16 @@ namespace BeeBot.Shared.ControllersComponents
 			this.playingArea.changeMap(map);
 			this.OnChange?.Invoke();
 		}
+		public void newMap()
+        {
+			this.changeMap(new Map());
+			this.OnChange?.Invoke();
+		}
+		public void deletePlayArea()
+        {
+			this.map.Blocks.Clear();
+			this.changeMap(this.map);
+        }
 
 		public event Action? OnChange;
 	}

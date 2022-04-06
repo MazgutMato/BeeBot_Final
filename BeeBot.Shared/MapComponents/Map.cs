@@ -8,7 +8,6 @@ namespace BeeBot.Shared.MapComponents
 {
     public class Map
     {
-        public int MapId { get; set; }
         public string Name { get; set; }
         public string Description { get; set;}
         public int sizeX { get; set; }
@@ -20,7 +19,6 @@ namespace BeeBot.Shared.MapComponents
         public ICollection<Block> Blocks { get; set; }
         public Map()
         {
-            this.MapId = 0;
             this.Name = "Nová mapa";
             this.Description = "Získaj všetky odmeny a dostaň sa do ciela!";
             this.sizeX = 8;

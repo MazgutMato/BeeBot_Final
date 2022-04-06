@@ -1,82 +1,96 @@
 ﻿@inject ControllerCommands controllerCommands
 
-			@*end of game*@
-				@if (this.StateOfGame == true)
-				{
-					<div class="card m-3 border border-3 border-dark bg-success">
-						<div class="card-body border-3 border-dark">
-							<div class="row d-flex justify-content-center p-1">
-								Úspešne si prešiel mapou!
-							</div>
-						</div>
-					</div>
-				} else if (this.StateOfGame == false)
-				{
-					<div class="card m-3 border border-3 border-dark bg-danger">
-						<div class="card-body border-3 border-dark">
-							<div class="row d-flex justify-content-center p-1">
-								Skús to znovu!
-							</div>
-						</div>	
-					</div>
-				}
-
-			@*command panel*@
-			<div class="card m-3 border border-3 border-dark">			
-				<div class="card-body border-bottom border-3 border-dark">
-					<div class="row d-flex justify-content-center p-1">
-						Zadaj prikazy
-					</div>
+@*end of game*@
+@if (this.StateOfGame == true)
+{
+	<div class="card m-3 border border-3 border-dark bg-success">
+		<div class="card-body border-3 border-dark">
+			<div class="row p-1">				
+				<div class="col-10 d-flex align-items-center justify-content-center">
+					Úspešne si prešiel mapou!
 				</div>
-				<div class="card-body border-bottom border-3 border-dark">
-					<div class="row d-flex p-3 justify-content-center">
-						<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateLeft)"/>
-						<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.moveForward)"/>
-						<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.moveBack)"/>
-						<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateRight)"/>
-					</div>
-					<div class="row d-flex p-3 justify-content-center">
-						<img src="images/commands/playl.svg" class="command command_pick" @onclick="() => {
-							if (controllerCommands.CancellationToken == null)
-								this.runProgram();
-							}"/>
-						<img src="images/commands/stop.svg" class="command command_pick" @onclick="() => {
-							controllerCommands.stopAnimation();
-							this.StateOfGame = null;
-							}"/>
-						<img src="images/commands/trash.svg" class="command command_pick" @onclick="() => {
-							controllerCommands.deleteCommands();
-							this.StateOfGame = null;
-							}"/>
-					</div>
-				</div>
-				<div class="card-body">
-					<div class="row d-flex justify-content-center p-1">
-						Zadane prikazy
-					</div>
-					@if(controllerCommands.Commands.Any()){
-						<div class="row d-flex justify-content-center card-body">
-						@foreach (Command command in controllerCommands.Commands){
-							switch (command)
-							{
-								case Command.moveForward:
-									<img src="images/commands/up.svg" class="command"/>
-									break;
-								case Command.moveBack:
-									<img src="images/commands/down.svg" class="command"/>
-									break;
-								case Command.rotateLeft:
-									<img src="images/commands/rotate_left.svg" class="command"/>
-									break;
-								case Command.rotateRight:
-									<img src="images/commands/rotate_right.svg" class="command"/>
-									break;               
-							}
-						}
-						</div>
-					}
+				<div class="col-2 d-flex align-items-center justify-content-center">
+					<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => this.StateOfGame = null"></i>
 				</div>
 			</div>
+		</div>
+	</div>
+}
+else if (this.StateOfGame == false)
+{
+	<div class="card m-3 border border-3 border-dark bg-danger">
+		<div class="card-body border-3 border-dark">
+			<div class="row p-1">
+				<div class="col-10 d-flex align-items-center justify-content-center">
+					Skus to znovu!
+				</div>
+				<div class="col-2 d-flex align-items-center justify-content-center">
+					<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => this.StateOfGame = null"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@*command panel*@
+<div class="card m-3 border border-3 border-dark">
+	<div class="card-body border-bottom border-3 border-dark">
+		<div class="row d-flex justify-content-center p-1">
+			Zadaj prikazy
+		</div>
+	</div>
+	<div class="card-body border-bottom border-3 border-dark">
+		<div class="row d-flex p-3 justify-content-center">
+			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateLeft)" />
+			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.moveForward)" />
+			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.moveBack)" />
+			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateRight)" />
+		</div>
+		<div class="row d-flex p-3 justify-content-center">
+			<img src="images/commands/playl.svg" class="command command_pick" @onclick="() => {
+							if (controllerCommands.CancellationToken == null)
+								this.runProgram();
+							}" />
+			<img src="images/commands/stop.svg" class="command command_pick" @onclick="() => {
+							controllerCommands.stopAnimation();
+							this.StateOfGame = null;
+							}" />
+			<img src="images/commands/trash.svg" class="command command_pick" @onclick="() => {
+							controllerCommands.deleteCommands();
+							this.StateOfGame = null;
+							}" />
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="row d-flex justify-content-center p-1">
+			Zadane prikazy
+		</div>
+		@if (controllerCommands.Commands.Any())
+		{
+			<div class="row d-flex justify-content-center card-body">
+				@for (var i = 0; i < controllerCommands.Commands.Count; i++)
+				{
+					int cisloPrikazu = i;
+					switch (controllerCommands.Commands[i])
+					{
+						case Command.moveForward:
+						<img src="images/commands/up.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)" />
+							break;
+						case Command.moveBack:
+							<img src="images/commands/down.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)"/>
+							break;
+						case Command.rotateLeft:
+							<img src="images/commands/rotate_left.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)"/>
+							break;
+						case Command.rotateRight:
+							<img src="images/commands/rotate_right.svg" class="command command_remove" @onclick="() => controllerCommands.Commands.RemoveAt(cisloPrikazu)"/>
+							break;
+					}	
+				}													
+			</div>
+		}
+	</div>
+</div>
 
 @code {
 	public bool? StateOfGame { get; set; }
