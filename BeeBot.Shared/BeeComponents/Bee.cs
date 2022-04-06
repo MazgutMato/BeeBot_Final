@@ -151,10 +151,9 @@ namespace BeeBot.Shared.BeeComponents
         {
             if(this.playingArea.playArea[this.positionX][this.positionY].type == BlockType.Reward)
             {
-                Block colleted = this.playingArea.playArea[this.positionX][this.positionY];
-                this.collectedBlocks.Add(colleted);
+                this.playingArea.uncollectedReward.Remove(this.playingArea.playArea[this.positionX][this.positionY]);
+                this.collectedBlocks.Add(this.playingArea.playArea[this.positionX][this.positionY]);
                 this.playingArea.playArea[this.positionX][this.positionY].type = BlockType.None;
-                this.playingArea.uncollectedReward.Remove(colleted);
             }
         }
         private bool isHome()

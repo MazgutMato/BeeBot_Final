@@ -31,6 +31,7 @@ namespace BeeBot.Shared.MapComponents
             int oldY = this.sizeY;
             this.sizeX = x;
             this.sizeY = y;
+            this.uncollectedReward.Clear();
             this.playArea = new Block[this.sizeX][];
             for (int i = 0; i < this.sizeX; i++)
             {
@@ -45,7 +46,7 @@ namespace BeeBot.Shared.MapComponents
                         this.playArea[i][j].type = oldArea[i][j].type;
                         if(oldArea[i][j].type == BlockType.Reward)
                         {
-                            this.uncollectedReward.Remove(oldArea[i][j]);
+                            this.uncollectedReward.Add(this.playArea[i][j]);
                         }
                     }                    
                 }
