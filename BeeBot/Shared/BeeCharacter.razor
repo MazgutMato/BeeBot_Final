@@ -66,14 +66,14 @@
 @if(this.bee.animation is null){
 	<g transform="rotate(@((int)this.bee.rotation),@(this.bee.positionX*100 + 50),@(this.bee.positionY*100 + 50))">
 		<image id="bee-move" 
-			href="images\character.png" 
+			href="images\bee.svg" 
 			width="80" height="80" 
 			x="@(this.bee.positionX*100 + 10)" y="@(this.bee.positionY*100 + 10)"/>
 	</g>
 } else
 {
 	<image id="bee-move"
-	   href="images\character.png"
+	   href="images\bee.svg"
 	   width="80" height="80"
 	   x="@(this.bee.positionX*100 + 10)" y="@(this.bee.positionY*100 + 10)" />
 }

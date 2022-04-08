@@ -30,3 +30,15 @@
 
 	</div>
 </div>
+
+@code{
+	#region Overrides of ComponentBase
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		this.playingArea.mode = Mode.Playing;
+	}
+
+	#endregion
+}

@@ -22,7 +22,7 @@ namespace BeeBot.Shared.MapComponents
         public PlayingArea(Map map)
         {
             this.map = map;
-            this.newPlayArea(map);
+            this.changeMap(this.map);
         }
         public void changeSize(int x, int y)
         {

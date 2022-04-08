@@ -20,14 +20,18 @@ namespace BeeBot.Shared.MapComponents
         public Map()
         {
             this.Name = "Nová mapa";
-            this.Description = "Získaj všetky odmeny a dostaň sa do ciela!";
-            this.sizeX = 8;
-            this.sizeY = 8;
+            this.Description = "Pozbieraj všetky kvetiny, vyhni sa kríkom a dostaň sa do úľu!";
+            this.sizeX = 3;
+            this.sizeY = 2;
             this.RectangleFile = "";
             this.RewardFile = "";
             this.BarrierFile = "";
             this.FinishFile = "";
-            this.Blocks = new List<Block>();
+            this.Blocks = new List<Block>{
+                new Block(1,0,BlockType.Barrier),
+                new Block(1,1,BlockType.Reward),
+                new Block(2,0,BlockType.Finish),
+            };
         }
     }
 }

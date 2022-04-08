@@ -11,5 +11,16 @@ namespace BeeBot.Shared.MapComponents
         public BlockType type { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public Block()
+        {
+            this.X = 0;
+            this.Y = 0;
+            this.type = BlockType.None;
+        }
+        public Block(int x, int y, BlockType type) {
+            this.X = x;
+            this.Y = y;
+            this.type = type;
+        }
     }
 }
