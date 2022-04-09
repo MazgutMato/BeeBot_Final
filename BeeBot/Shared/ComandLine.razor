@@ -47,9 +47,9 @@ else if (this.StateOfGame == false)
 			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateRight)" />
 		</div>
 		<div class="row d-flex p-3 justify-content-center">
-			<img src="images/commands/playl.svg" class="command command_pick" @onclick="() => {
+			<img src="images/commands/playl.svg" class="command command_pick" @onclick="async () => {
 							if (controllerCommands.CancellationToken == null)
-								this.runProgram();
+								await this.runProgram();
 							}" />
 			<img src="images/commands/stop.svg" class="command command_pick" @onclick="() => {
 							controllerCommands.stopAnimation();

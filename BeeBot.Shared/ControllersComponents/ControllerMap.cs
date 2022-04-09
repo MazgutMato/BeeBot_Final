@@ -106,6 +106,25 @@ namespace BeeBot.Shared.ControllersComponents
 			this.map.Blocks.Clear();
 			this.changeMap(this.map);
         }
+		public void changeFile(BlockType type, string fileName)
+		{
+			switch (type)
+			{
+				case BlockType.None:
+					this.map.RectangleFile = fileName;
+					break;
+				case BlockType.Reward:
+					this.map.RewardFile= fileName;
+					break;
+				case BlockType.Barrier:
+					this.map.BarrierFile= fileName;
+					break;
+				case BlockType.Finish:
+					this.map.FinishFile = fileName;
+					break;
+			}
+			this.OnChange?.Invoke();
+		}
 
 		public event Action? OnChange;
 	}

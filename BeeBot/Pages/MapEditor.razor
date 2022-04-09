@@ -115,13 +115,12 @@
 							</svg>
 						</div>
 						<div class="col-7">
-							<EditForm Model="@this.map">
-								<div class="col-12">
-									<label>Zadaj link!</label>
-									<InputText id="barrier" class="form-control" @bind-Value="this.map.BarrierFile" />
-								</div>								
-								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
-							</EditForm>
+							<div class="col-12">
+								<label>Zadaj link!</label>
+								<input class="form-control" value="@this.map.BarrierFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Barrier,e?.Value?.ToString()))" />
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Barrier,"")'><i class="bi bi-x-square"></i></button>
+							</div>
 						</div>
 					</div>
 
@@ -141,13 +140,12 @@
 							</svg>
 						</div>
 						<div class="col-7">
-							<EditForm Model="@this.map">
-								<div class="col-12">
-									<label>Zadaj link!</label>
-									<InputText id="barrier" class="form-control" @bind-Value="this.map.FinishFile" />
-								</div>
-								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
-							</EditForm>
+							<div class="col-12">
+								<label>Zadaj link!</label>
+								<input class="form-control" value="@this.map.FinishFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Finish,e?.Value?.ToString()))" />
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Finish,"")'><i class="bi bi-x-square"></i></button>
+							</div>
 						</div>
 					</div>
 
@@ -167,14 +165,13 @@
 									   @onclick="() => controllerMap.BlockEditor = BlockType.None"></image>
 							</svg>
 						</div>
-						<div class="col-7 small">
-							<EditForm Model="@this.map">
-								<div class="col-12">
-									<label>Zadaj link!</label>
-									<InputText id="barrier" class="form-control" @bind-Value="this.map.RectangleFile" />
-								</div>
-								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
-							</EditForm>
+						<div class="col-7">
+							<div class="col-12">
+								<label>Zadaj link!</label>
+								<input class="form-control" value="@this.map.RectangleFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.None,e?.Value?.ToString()))" />
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.None,"")'><i class="bi bi-x-square"></i></button>
+							</div>
 						</div>
 					</div>
 
@@ -194,13 +191,12 @@
 							</svg>
 						</div>
 						<div class="col-7">
-							<EditForm Model="@this.map">
-								<div class="col-12">
-									<label>Zadaj link!</label>
-									<InputText id="barrier" class="form-control" @bind-Value="this.map.RewardFile" />
-								</div>
-								<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen obrazok</button>
-							</EditForm>
+							<div class="col-12">
+								<label>Zadaj link!</label>
+								<input class="form-control" value="@this.map.RewardFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Reward,e?.Value?.ToString()))" />
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Reward,"")'><i class="bi bi-x-square"></i></button>
+							</div>
 						</div>
 					</div>
 
