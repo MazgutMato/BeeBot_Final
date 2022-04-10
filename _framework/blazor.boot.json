@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "BeeBot.dll": "sha256-cetFIK7iArlzVPKB1DF5+3i4xMoHZun5qHopMWvVbQE=",
+      "BeeBot.dll": "sha256-Br0Tsu8Uk9vcU9j2i5uhuB3KKgOtsagSzzA2J9X5XJk=",
       "BeeBot.Shared.dll": "sha256-kUxv\/HGl17VNDWmI4ETIEvVEfqYes0cNoYvDIBI2+as=",
       "BlazorDownloadFile.dll": "sha256-w9SCIaQHM181\/A18iDq8bdozpzxS9D+ZShl3NyKj0KY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-r3zHPjDyu2owiFSrccIN1j+TTxyLD64sAJ08hovbF2I=",
