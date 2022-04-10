@@ -11,9 +11,9 @@ namespace BeeBot.Shared.ControllersComponents
 {
     public class ControllerCommands
     {
-        public List<Command> Commands { get; }
-        public Bee Bee { get; set; }
+        public List<Command> Commands { get; }        
         public CancellationTokenSource? CancellationToken { get; set; }
+        private readonly Bee Bee;
         public ControllerCommands(Bee bee)
         {
             this.Bee = bee;
