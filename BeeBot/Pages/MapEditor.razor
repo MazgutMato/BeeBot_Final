@@ -106,7 +106,7 @@
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 											@(this.controllerMap.BlockEditor == BlockType.Barrier ? "5px" : "1px");
 											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
-								<image href="@(this.map.BarrierFile == "" ? "/images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
+								<image href="@(this.map.BarrierFile == "" ? "images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
 									   x="10"
 									   y="10"
 									   height="100"
@@ -131,7 +131,7 @@
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 											@(this.controllerMap.BlockEditor == BlockType.Finish ? "5px" : "1px");
 											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
-								<image href="@(this.map.FinishFile == "" ? "/images/defaultMap/finish.svg" :  this.map.FinishFile)"
+								<image href="@(this.map.FinishFile == "" ? "images/defaultMap/finish.svg" :  this.map.FinishFile)"
 									   height="100"
 									   width="100"
 									   x="10"
@@ -157,7 +157,7 @@
 									@(this.controllerMap.BlockEditor == BlockType.None ? "5px" : "1px"); ;
 									opacity: 1; fill: white" vector-effect="non-scaling-stroke"
 									  @onclick="() => controllerMap.BlockEditor = BlockType.None" />
-								<image href="@(this.map.RectangleFile == "" ? "/images/defaultMap/rectangle.svg" :  this.map.RectangleFile)"
+								<image href="@(this.map.RectangleFile == "" ? "images/defaultMap/rectangle.svg" :  this.map.RectangleFile)"
 									   height="100"
 									   width="100"
 									   x="10"
@@ -182,7 +182,7 @@
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 											@(this.controllerMap.BlockEditor == BlockType.Reward ? "5px" : "1px");
 											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
-								<image href="@(this.map.RewardFile == "" ? "/images/defaultMap/reward.svg" :  this.map.RewardFile)"
+								<image href="@(this.map.RewardFile == "" ? "images/defaultMap/reward.svg" :  this.map.RewardFile)"
 									   height="100"
 									   width="100"
 									   x="10"
