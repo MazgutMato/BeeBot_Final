@@ -41,10 +41,10 @@ else if (this.StateOfGame == false)
 	</div>
 	<div class="card-body border-bottom border-3 border-dark">
 		<div class="row d-flex p-3 justify-content-center">
-			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.rotateLeft))" />
-			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.moveForward))" />
-			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.moveBack))" />
-			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.rotateRight))" />
+			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.rotateLeft))" />
+			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.moveForward))" />
+			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.moveBack))" />
+			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.rotateRight))" />
 		</div>
 		<div class="row d-flex p-3 justify-content-center">
 			<img src="images/commands/playl.svg" class="command command_pick" @onclick="async () => {
@@ -52,11 +52,11 @@ else if (this.StateOfGame == false)
 								await this.runProgram();
 							}" />
 			<img src="images/commands/stop.svg" class="command command_pick" @onclick="() => {
-							controllerCommands.stopAnimation();
+							controllerCommands.StopAnimation();
 							this.StateOfGame = null;
 							}" />
 			<img src="images/commands/trash.svg" class="command command_pick" @onclick="() => {
-							controllerCommands.deleteCommands();
+							controllerCommands.DeleteCommands();
 							this.StateOfGame = null;
 							}" />
 		</div>
@@ -130,7 +130,7 @@ else if (this.StateOfGame == false)
 	async Task runProgram()
 	{
 		this.StateOfGame = null;
-		this.StateOfGame =  await controllerCommands.startAnimationAsync();
+		this.StateOfGame =  await controllerCommands.StartAnimationAsync();
 		this.StateHasChanged();
 	}
 

@@ -8,10 +8,10 @@ namespace BeeBot.Shared.BeeComponents.AnimationTypes
 {
     public class Move : Animation
     {
-        public string path { get; set; }
+        public string Path { get; set; }
         public Move(string path, int time) : base(time)
         {
-            this.path = path;
+            this.Path = path;
         }
     }
 }

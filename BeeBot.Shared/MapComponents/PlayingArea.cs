@@ -13,72 +13,76 @@ namespace BeeBot.Shared.MapComponents
     }
     public class PlayingArea
     {
-        public int sizeX { get; set; }
-        public int sizeY { get; set; }
-        public ICollection<Block> uncollectedReward { get; set; }
-        public Block[][] playArea { get; set; }
-        public Mode? mode { get; set; }
+        public int SizeX { get; set; }
+        public int SizeY { get; set; }
+        public ICollection<Block> UncollectedReward { get; set; }
+        public Block[][] PlayArea { get; set; }
+        public Mode? Mode { get; set; }
         private readonly Map map;
         public PlayingArea(Map map)
         {
             this.map = map;
-            this.changeMap(this.map);
+            this.ChangeMap(this.map);
         }
-        public void changeSize(int x, int y)
+        public void ChangeSize(int x, int y)
         {
-            Block[][] oldArea = this.playArea;
-            int oldX = this.sizeX;
-            int oldY = this.sizeY;
-            this.sizeX = x;
-            this.sizeY = y;
-            this.uncollectedReward.Clear();
-            this.playArea = new Block[this.sizeX][];
-            for (int i = 0; i < this.sizeX; i++)
+            Block[][] oldArea = this.PlayArea;
+            int oldX = this.SizeX;
+            int oldY = this.SizeY;
+            this.SizeX = x;
+            this.SizeY = y;
+            this.UncollectedReward.Clear();
+            this.PlayArea = new Block[this.SizeX][];
+            for (int i = 0; i < this.SizeX; i++)
             {
-                this.playArea[i] = new Block[this.sizeY];
-                for (int j = 0; j < this.sizeY; j++)
+                this.PlayArea[i] = new Block[this.SizeY];
+                for (int j = 0; j < this.SizeY; j++)
                 {
-                    playArea[i][j] = new Block();
-                    playArea[i][j].X = i;
-                    playArea[i][j].Y = j;
+                    PlayArea[i][j] = new Block
+                    {
+                        X = i,
+                        Y = j
+                    };
                     if (i < oldX && j < oldY)
                     {
-                        this.playArea[i][j].type = oldArea[i][j].type;
-                        if(oldArea[i][j].type == BlockType.Reward)
+                        this.PlayArea[i][j].Type = oldArea[i][j].Type;
+                        if(oldArea[i][j].Type == BlockType.Reward)
                         {
-                            this.uncollectedReward.Add(this.playArea[i][j]);
+                            this.UncollectedReward.Add(this.PlayArea[i][j]);
                         }
                     }                    
                 }
             }
         }
-        private void newPlayArea(Map map)
+        private void NewPlayArea(Map map)
         {
-            this.sizeX = map.sizeX;
-            this.sizeY = map.sizeY;
-            this.uncollectedReward = new List<Block>();
-            this.playArea = new Block[this.sizeX][];
-            for (int i = 0; i < this.sizeX; i++)
+            this.SizeX = map.SizeX;
+            this.SizeY = map.SizeY;
+            this.UncollectedReward = new List<Block>();
+            this.PlayArea = new Block[this.SizeX][];
+            for (int i = 0; i < this.SizeX; i++)
             {
-                this.playArea[i] = new Block[this.sizeY];
-                for (int j = 0; j < this.sizeY; j++)
+                this.PlayArea[i] = new Block[this.SizeY];
+                for (int j = 0; j < this.SizeY; j++)
                 {
-                    playArea[i][j] = new Block();
-                    playArea[i][j].X = i;
-                    playArea[i][j].Y = j;
-                    playArea[i][j].type = BlockType.None;
+                    PlayArea[i][j] = new Block
+                    {
+                        X = i,
+                        Y = j,
+                        Type = BlockType.None
+                    };
                 }
             }
         }
-        public void changeMap(Map map)
+        public void ChangeMap(Map map)
         {
-            this.newPlayArea(map);
+            this.NewPlayArea(map);
             foreach (Block block in map.Blocks)
             {
-                this.playArea[block.X][block.Y] = block;
-                if(block.type == BlockType.Reward)
+                this.PlayArea[block.X][block.Y] = block;
+                if(block.Type == BlockType.Reward)
 				{
-                    this.uncollectedReward.Add(block);
+                    this.UncollectedReward.Add(block);
 				}
             }
         }

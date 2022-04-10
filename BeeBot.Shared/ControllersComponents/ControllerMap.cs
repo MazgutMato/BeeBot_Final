@@ -20,69 +20,69 @@ namespace BeeBot.Shared.ControllersComponents
 			this.BlockEditor = BlockType.None;
 		}
 
-		public void increaseX()
+		public void IncreaseX()
 		{
-			this.map.sizeX++;
-			this.playingArea.changeSize(this.map.sizeX, this.map.sizeY);
+			this.map.SizeX++;
+			this.playingArea.ChangeSize(this.map.SizeX, this.map.SizeY);
 			this.OnChange?.Invoke();
 		}
-		public void increaseY()
+		public void IncreaseY()
 		{
-			this.map.sizeY++;
-			this.playingArea.changeSize(this.map.sizeX , this.map.sizeY);
+			this.map.SizeY++;
+			this.playingArea.ChangeSize(this.map.SizeX , this.map.SizeY);
 			this.OnChange?.Invoke();
 		}
-		public void decreaseX()
+		public void DecreaseX()
 		{
-			if (this.map.sizeX > 2)
+			if (this.map.SizeX > 2)
             {
-				this.map.sizeX--;
-				this.playingArea.changeSize(this.map.sizeX, this.map.sizeY);
+				this.map.SizeX--;
+				this.playingArea.ChangeSize(this.map.SizeX, this.map.SizeY);
 				this.OnChange?.Invoke();
 			}
 		}
-		public void decreaseY()
+		public void DecreaseY()
 		{
-			if (this.map.sizeY > 2)
+			if (this.map.SizeY > 2)
 			{
-				this.map.sizeY--;
-				this.playingArea.changeSize(this.map.sizeX, this.map.sizeY);
+				this.map.SizeY--;
+				this.playingArea.ChangeSize(this.map.SizeX, this.map.SizeY);
 				this.OnChange?.Invoke();
 			}					
 		}
-		public void changeRectangleType(int x,int y)
+		public void ChangeRectangleType(int x,int y)
         {
-			if (this.BlockEditor == BlockType.Reward && this.playingArea.playArea[x][y].type != BlockType.Reward)
+			if (this.BlockEditor == BlockType.Reward && this.playingArea.PlayArea[x][y].Type != BlockType.Reward)
             {
-				this.playingArea.playArea[x][y].type = BlockType.Reward;
-				this.playingArea.uncollectedReward.Add(this.playingArea.playArea[x][y]);
-			}else if (this.BlockEditor != BlockType.Reward && this.playingArea.playArea[x][y].type == BlockType.Reward)
+				this.playingArea.PlayArea[x][y].Type = BlockType.Reward;
+				this.playingArea.UncollectedReward.Add(this.playingArea.PlayArea[x][y]);
+			}else if (this.BlockEditor != BlockType.Reward && this.playingArea.PlayArea[x][y].Type == BlockType.Reward)
 			{
-				this.playingArea.uncollectedReward.Remove(this.playingArea.playArea[x][y]);
-				this.playingArea.playArea[x][y].type = this.BlockEditor;
+				this.playingArea.UncollectedReward.Remove(this.playingArea.PlayArea[x][y]);
+				this.playingArea.PlayArea[x][y].Type = this.BlockEditor;
 			} else
             {
-				this.playingArea.playArea[x][y].type = this.BlockEditor;
+				this.playingArea.PlayArea[x][y].Type = this.BlockEditor;
 			}
 			this.OnChange?.Invoke();
         }
 
-		public Map saveMap()
+		public Map SaveMap()
         {
 			this.map.Blocks.Clear();
-            for (int i = 0; i < this.map.sizeX; i++)
+            for (int i = 0; i < this.map.SizeX; i++)
             {
-                for (int j = 0; j < this.map.sizeY; j++)
+                for (int j = 0; j < this.map.SizeY; j++)
                 {
-					if (this.playingArea.playArea[i][j].type != BlockType.None)
+					if (this.playingArea.PlayArea[i][j].Type != BlockType.None)
                     {
-						this.map.Blocks.Add(this.playingArea.playArea[i][j]);
+						this.map.Blocks.Add(this.playingArea.PlayArea[i][j]);
                     }
                 }
             }
 			return this.map;
         }
-		public void changeMap(Map map)
+		public void ChangeMap(Map map)
         {
 			this.map.Name = map.Name;
 			this.map.Description = map.Description;
@@ -90,23 +90,23 @@ namespace BeeBot.Shared.ControllersComponents
 			this.map.BarrierFile = map.BarrierFile;
 			this.map.FinishFile = map.FinishFile;
 			this.map.RectangleFile = map.RectangleFile;
-			this.map.sizeX = map.sizeX;
-			this.map.sizeY = map.sizeY;
+			this.map.SizeX = map.SizeX;
+			this.map.SizeY = map.SizeY;
 			this.map.Blocks = map.Blocks;
-			this.playingArea.changeMap(map);
+			this.playingArea.ChangeMap(map);
 			this.OnChange?.Invoke();
 		}
-		public void newMap()
+		public void NewMap()
         {
-			this.changeMap(new Map());
+			this.ChangeMap(new Map());
 			this.OnChange?.Invoke();
 		}
-		public void deletePlayArea()
+		public void DeletePlayArea()
         {
 			this.map.Blocks.Clear();
-			this.changeMap(this.map);
+			this.ChangeMap(this.map);
         }
-		public void changeFile(BlockType type, string fileName)
+		public void ChangeFile(BlockType type, string fileName)
 		{
 			switch (type)
 			{

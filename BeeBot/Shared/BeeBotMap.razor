@@ -4,11 +4,11 @@
 @inject ControllerMap controllerMap
 
 
-<svg viewBox="-0.1 -0.1 @(playingArea.sizeX*100).2 @(playingArea.sizeY*100).2" style="width: auto; height: auto; max-width: 100%; max-height: 85vh">
+<svg viewBox="-0.1 -0.1 @(playingArea.SizeX*100).2 @(playingArea.SizeY*100).2" style="width: auto; height: auto; max-width: 100%; max-height: 85vh">
 	<g>
-		@for (int y = 0; y < playingArea.sizeY; y++)
+		@for (int y = 0; y < playingArea.SizeY; y++)
 		{
-			@for (int x = 0; x < playingArea.sizeX; x++)
+			@for (int x = 0; x < playingArea.SizeX; x++)
 			{
 				int mapX = x;
 				int mapY = y;
@@ -19,13 +19,13 @@
 					   height="100"
 					   width="100"
 					   @onclick="() => {
-							if (this.playingArea.mode == Mode.Editing)
-								this.controllerMap.changeRectangleType(mapX,mapY);
+							if (this.playingArea.Mode == Mode.Editing)
+								this.controllerMap.ChangeRectangleType(mapX,mapY);
 							}">
 					</image>
 				</g>				
 				<g>				
-				@switch (this.playingArea.playArea[mapX][mapY].type)
+				@switch (this.playingArea.PlayArea[mapX][mapY].Type)
 				{
 					case BlockType.Barrier:
 						<image href="@(this.map.BarrierFile == "" ? "/images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
@@ -34,8 +34,8 @@
 						   height="100"
 						   width="100"
 						   @onclick="() => {
-                            if (this.playingArea.mode == Mode.Editing)
-                                this.controllerMap.changeRectangleType(mapX,mapY);
+                            if (this.playingArea.Mode == Mode.Editing)
+                                this.controllerMap.ChangeRectangleType(mapX,mapY);
                             }"></image>
 						break;
 					case BlockType.Finish:
@@ -45,8 +45,8 @@
 						   height="100"
 						   width="100"
 						   @onclick="() => {
-                            if (this.playingArea.mode == Mode.Editing)
-                                this.controllerMap.changeRectangleType(mapX,mapY);
+                            if (this.playingArea.Mode == Mode.Editing)
+                                this.controllerMap.ChangeRectangleType(mapX,mapY);
                             }"></image>
 						break;
 					case BlockType.Reward:
@@ -56,8 +56,8 @@
 						   height="100"
 						   width="100"
 						   @onclick="() => {
-                            if (this.playingArea.mode == Mode.Editing)
-                                this.controllerMap.changeRectangleType(mapX,mapY);
+                            if (this.playingArea.Mode == Mode.Editing)
+                                this.controllerMap.ChangeRectangleType(mapX,mapY);
                             }"></image>
 							break;
 					case BlockType.None:

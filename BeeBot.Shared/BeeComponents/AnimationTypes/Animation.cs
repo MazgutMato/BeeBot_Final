@@ -8,10 +8,10 @@ namespace BeeBot.Shared.BeeComponents.AnimationTypes
 {
     public abstract class Animation
     {
-        public int time { get; set; }
+        public int Time { get; set; }
         public Animation(int time)
         {
-            this.time = time;
+            this.Time = time;
         }
     }
 }

@@ -6,7 +6,7 @@
 		<div class="row d-flex justify-content-center">
 			Zmen mapu
 		</div>
-	</div
+	</div>
 	<div class="card-body border-3 border-dark">
 		<div class="row d-flex justify-content-center p-1">
 			@if (isLoading)
@@ -57,14 +57,14 @@
 	private string ErrorLoad = "";
 
 	async Task LoadMap(InputFileChangeEventArgs e){
-		this.controllerCommands.deleteCommands();
+		this.controllerCommands.DeleteCommands();
 		this.isLoading = true;
 		this.SuccesedLoad = null;
 		try
 		{
 			loadedFile = e.File;
 			Map loadedMap = await JsonSerializer.DeserializeAsync<Map>(loadedFile.OpenReadStream());
-			controllerMap.changeMap(loadedMap);
+			controllerMap.ChangeMap(loadedMap);
 			this.SuccesedLoad = true;
 		} catch (Exception ex)
 		{

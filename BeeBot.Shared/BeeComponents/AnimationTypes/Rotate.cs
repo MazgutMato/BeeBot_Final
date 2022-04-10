@@ -8,12 +8,12 @@ namespace BeeBot.Shared.BeeComponents.AnimationTypes
 {
     public class Rotate : Animation
     {
-        public int oldAngle { get; set; }
-        public int newAngle { get; set; }
+        public int OldAngle { get; set; }
+        public int NewAngle { get; set; }
         public Rotate(int oldAngle, int newAngle, int time) : base(time)
         {
-            this.oldAngle = oldAngle;
-            this.newAngle = newAngle;
+            this.OldAngle = oldAngle;
+            this.NewAngle = newAngle;
         }
     }
 }

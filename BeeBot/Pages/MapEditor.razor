@@ -34,7 +34,7 @@
 							<div class="row">
 								<div class="col-2">
 									<p>Nova mapa</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.newMap()">
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.NewMap()">
 										<i class="bi bi-file-earmark-plus"></i>
 									</button>
 								</div>
@@ -46,25 +46,25 @@
 								</div>
 								<div class="col-2">
 									<p>Zmaž plochu</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.deletePlayArea()">
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.DeletePlayArea()">
 										<i class="bi bi-trash"></i>
 									</button>
 								</div>
 								<div class="col-3">
-									<p>Šírka mapy: @map.sizeX</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.increaseX()">
+									<p>Šírka mapy: @map.SizeX</p>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.IncreaseX()">
 										<i class="bi bi-plus-lg"></i>
 									</button>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.decreaseX()">
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.DecreaseX()">
 										<i class="bi bi-dash"></i>
 									</button>
 								</div>
 								<div class="col-3">
-									<p>Výška mapy: @map.sizeY</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.increaseY()">
+									<p>Výška mapy: @map.SizeY</p>
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.IncreaseY()">
 										<i class="bi bi-plus-lg"></i>
 									</button>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.decreaseY()">
+									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.DecreaseY()">
 										<i class="bi bi-dash"></i>
 									</button>
 								</div>									
@@ -117,9 +117,9 @@
 						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.BarrierFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Barrier,e?.Value?.ToString()))" />
+								<input class="form-control" value="@this.map.BarrierFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.Barrier,e?.Value?.ToString()))" />
 								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Barrier,"")'><i class="bi bi-x-square"></i></button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.Barrier,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
 					</div>
@@ -142,9 +142,9 @@
 						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.FinishFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Finish,e?.Value?.ToString()))" />
+								<input class="form-control" value="@this.map.FinishFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.Finish,e?.Value?.ToString()))" />
 								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Finish,"")'><i class="bi bi-x-square"></i></button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.Finish,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
 					</div>
@@ -168,9 +168,9 @@
 						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.RectangleFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.None,e?.Value?.ToString()))" />
+								<input class="form-control" value="@this.map.RectangleFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.None,e?.Value?.ToString()))" />
 								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.None,"")'><i class="bi bi-x-square"></i></button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.None,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
 					</div>
@@ -193,9 +193,9 @@
 						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.RewardFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Reward,e?.Value?.ToString()))" />
+								<input class="form-control" value="@this.map.RewardFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.Reward,e?.Value?.ToString()))" />
 								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Reward,"")'><i class="bi bi-x-square"></i></button>
+								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.Reward,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
 					</div>
@@ -218,14 +218,14 @@
 		base.OnInitialized();
 		this.controllerMap.OnChange += this.StateHasChanged;
 		this.bee.Reset();
-		this.playingArea.mode = Mode.Editing;
+		this.playingArea.Mode = Mode.Editing;
 	}
 
 	#endregion
 
 	async Task DownloadMap()
 	{
-		string jsonMap = JsonSerializer.Serialize(this.controllerMap.saveMap());
+		string jsonMap = JsonSerializer.Serialize(this.controllerMap.SaveMap());
 		var bytes = Encoding.ASCII.GetBytes(jsonMap);
 		var task = await BlazorDownloadFileService.DownloadFile(this.map.Name + ".map", bytes,CancellationToken.None,"application/octet-stream");
 		if (task.Succeeded)

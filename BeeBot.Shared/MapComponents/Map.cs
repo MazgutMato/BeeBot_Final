@@ -10,8 +10,8 @@ namespace BeeBot.Shared.MapComponents
     {
         public string Name { get; set; }
         public string Description { get; set;}
-        public int sizeX { get; set; }
-        public int sizeY { get; set; }
+        public int SizeX { get; set; }
+        public int SizeY { get; set; }
         public string RectangleFile { get; set; }
         public string BarrierFile { get; set; }
         public string RewardFile { get; set; }
@@ -21,8 +21,8 @@ namespace BeeBot.Shared.MapComponents
         {
             this.Name = "Nová mapa";
             this.Description = "Pozbieraj všetky kvetiny, vyhni sa kríkom a dostaň sa do úľu!";
-            this.sizeX = 3;
-            this.sizeY = 2;
+            this.SizeX = 3;
+            this.SizeY = 2;
             this.RectangleFile = "";
             this.RewardFile = "";
             this.BarrierFile = "";

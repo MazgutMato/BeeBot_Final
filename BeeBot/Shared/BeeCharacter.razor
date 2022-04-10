@@ -3,28 +3,28 @@
 @inject Bee bee
 
 @*bee rotate animation*@
-@if (this.bee.animation is Rotate)
+@if (this.bee.Animation is Rotate)
 {
 	<style type="text/css">
 		#bee-move {
 			animation-timing-function: linear;
-			animation: rotate @(this.bee.animation.time)000ms;
+			animation: rotate @(this.bee.Animation.Time)000ms;
 			animation-iteration-count: 1;
-			transform-origin: @(this.bee.positionX*100 + 50)px @(this.bee.positionY*100 + 50)px;
+			transform-origin: @(this.bee.PositionX*100 + 50)px @(this.bee.PositionY*100 + 50)px;
 		}
 
 		@@keyframes rotate {
 			0% {
 				transform: rotate(@( 
-					(((Rotate)this.bee.animation).oldAngle) == 0 && (((Rotate)this.bee.animation).newAngle) == 270 ? 
-					360 : (((Rotate)this.bee.animation).oldAngle) 
+					(((Rotate)this.bee.Animation).OldAngle) == 0 && (((Rotate)this.bee.Animation).NewAngle) == 270 ? 
+					360 : (((Rotate)this.bee.Animation).OldAngle) 
 				)deg);
 			}
 
 			100% {
 				transform: rotate(@( 
-					(((Rotate)this.bee.animation).newAngle) == 0 && (((Rotate)this.bee.animation).oldAngle) == 270 ? 
-					360 : (((Rotate)this.bee.animation).newAngle) 
+					(((Rotate)this.bee.Animation).NewAngle) == 0 && (((Rotate)this.bee.Animation).OldAngle) == 270 ? 
+					360 : (((Rotate)this.bee.Animation).NewAngle) 
 				)deg);
 			}
 		}
@@ -32,16 +32,16 @@
 }
 
 @*bee move animation*@
-@if(this.bee.animation is Move)
+@if(this.bee.Animation is Move)
 {
 
 	<style type="text/css">
 		#bee-move {
 			animation-timing-function: linear;
-			offset-path: path('@(((Move)this.bee.animation).path)');
-			animation: move @(this.bee.animation.time)000ms;
+			offset-path: path('@(((Move)this.bee.Animation).Path)');
+			animation: move @(this.bee.Animation.Time)000ms;
 			animation-iteration-count: 1;
-			transform-origin: @(this.bee.positionX*100 + 50)px @(this.bee.positionY*100 + 50)px;
+			transform-origin: @(this.bee.PositionX*100 + 50)px @(this.bee.PositionY*100 + 50)px;
 			transform: rotate(90deg);
 		}
 
@@ -63,19 +63,19 @@
 }
 
 @*svg bee*@
-@if(this.bee.animation is null){
-	<g transform="rotate(@((int)this.bee.rotation),@(this.bee.positionX*100 + 50),@(this.bee.positionY*100 + 50))">
+@if(this.bee.Animation is null){
+	<g transform="rotate(@((int)this.bee.Rotation),@(this.bee.PositionX*100 + 50),@(this.bee.PositionY*100 + 50))">
 		<image id="bee-move" 
 			href="images\bee.svg" 
 			width="80" height="80" 
-			x="@(this.bee.positionX*100 + 10)" y="@(this.bee.positionY*100 + 10)"/>
+			x="@(this.bee.PositionX*100 + 10)" y="@(this.bee.PositionY*100 + 10)"/>
 	</g>
 } else
 {
 	<image id="bee-move"
 	   href="images\bee.svg"
 	   width="80" height="80"
-	   x="@(this.bee.positionX*100 + 10)" y="@(this.bee.positionY*100 + 10)" />
+	   x="@(this.bee.PositionX*100 + 10)" y="@(this.bee.PositionY*100 + 10)" />
 }
 
 

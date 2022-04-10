@@ -20,26 +20,26 @@ namespace BeeBot.Shared.ControllersComponents
             this.Commands = new List<Command>();
             this.CancellationToken = null;
         }
-        public void addCommand(Command command)
+        public void AddCommand(Command command)
         {
             this.CancellationToken?.Cancel();
             this.Commands.Add(command);
             this.OnChanged?.Invoke();            
         }
-        public void stopAnimation()
+        public void StopAnimation()
         {
             this.CancellationToken?.Cancel();
             this.Bee.Reset();
             this.OnChanged?.Invoke();
         }
-        public void deleteCommands()
+        public void DeleteCommands()
         {
             this.Commands.Clear();
             this.CancellationToken?.Cancel();
             this.Bee.Reset();
             this.OnChanged?.Invoke();
         }
-        public async Task<bool?> startAnimationAsync()
+        public async Task<bool?> StartAnimationAsync()
         {
             this.CancellationToken = new CancellationTokenSource();
             this.Bee.Reset();
@@ -49,11 +49,11 @@ namespace BeeBot.Shared.ControllersComponents
                 foreach (Command command in this.Commands)
                 {                    
                     //move animation
-                    int startX = this.Bee.positionX * 100 + 50;
-                    int startY = this.Bee.positionY * 100 + 50;
+                    int startX = this.Bee.PositionX * 100 + 50;
+                    int startY = this.Bee.PositionY * 100 + 50;
                     string path = "M " + startX + " " + startY;
                     //rotate animation
-                    int oldAngle = (int)this.Bee.rotation;
+                    int oldAngle = (int)this.Bee.Rotation;
                     //time of animation
                     int time = 1;
                     //active command
@@ -64,15 +64,15 @@ namespace BeeBot.Shared.ControllersComponents
                         case CommandType.moveForward:
                             if (this.Bee.MoveForward())
                             {
-                                int newX = this.Bee.positionX * 100 + 50;
-                                int newY = this.Bee.positionY * 100 + 50;
+                                int newX = this.Bee.PositionX * 100 + 50;
+                                int newY = this.Bee.PositionY * 100 + 50;
                                 path += " L " + newX + " " + newY + " ";
                             }
                             else
                             {
-                                int newX = this.Bee.positionX * 100 + 50;
-                                int newY = this.Bee.positionY * 100 + 50;
-                                switch (this.Bee.rotation)
+                                int newX = this.Bee.PositionX * 100 + 50;
+                                int newY = this.Bee.PositionY * 100 + 50;
+                                switch (this.Bee.Rotation)
                                 {
                                     case Rotation.UP:
                                         newY -= 10;
@@ -100,20 +100,20 @@ namespace BeeBot.Shared.ControllersComponents
                                         break;
                                 }                                    
                             }
-                            this.Bee.animation = new Move(path,time);
+                            this.Bee.Animation = new Move(path,time);
                             break;
                         case CommandType.moveBack:
                             if (this.Bee.MoveBack())
                             {
-                                int newX = this.Bee.positionX * 100 + 50;
-                                int newY = this.Bee.positionY * 100 + 50;
+                                int newX = this.Bee.PositionX * 100 + 50;
+                                int newY = this.Bee.PositionY * 100 + 50;
                                 path += "L " + newX + " " + newY + " ";
                             }
                             else
                             {
-                                int newX = this.Bee.positionX * 100 + 50;
-                                int newY = this.Bee.positionY * 100 + 50;
-                                switch (this.Bee.rotation)
+                                int newX = this.Bee.PositionX * 100 + 50;
+                                int newY = this.Bee.PositionY * 100 + 50;
+                                switch (this.Bee.Rotation)
                                 {
                                     case Rotation.UP:
                                         newY += 10;
@@ -141,15 +141,15 @@ namespace BeeBot.Shared.ControllersComponents
                                         break;
                                 }
                             }
-                            this.Bee.animation = new Move(path, time);
+                            this.Bee.Animation = new Move(path, time);
                             break;
                         case CommandType.rotateLeft:
                             this.Bee.RotateLeft();
-                            this.Bee.animation = new Rotate(oldAngle, (int)this.Bee.rotation, time);
+                            this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, time);
                             break;
                         case CommandType.rotateRight:
                             this.Bee.RotateRight();
-                            this.Bee.animation = new Rotate(oldAngle, (int)this.Bee.rotation, time);
+                            this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, time);
                             break;
                     }
                     this.OnChanged?.Invoke();
@@ -157,8 +157,8 @@ namespace BeeBot.Shared.ControllersComponents
                     await Task.Delay((time * 900), this.CancellationToken.Token);
 
                     command.Active = false;
-                    this.Bee.animation = null;
-                    this.Bee.collectReward();
+                    this.Bee.Animation = null;
+                    this.Bee.CollectReward();
                     this.OnChanged?.Invoke();
 
                     await Task.Delay(500, this.CancellationToken.Token);
@@ -166,19 +166,19 @@ namespace BeeBot.Shared.ControllersComponents
             }
             catch (TaskCanceledException)
             {
-                this.resetCommands();
+                this.ResetCommands();
                 this.Bee.Reset();
-                this.Bee.animation = null;
+                this.Bee.Animation = null;
                 this.CancellationToken = null;
                 this.OnChanged?.Invoke();
                 return null;
             }
             this.CancellationToken = null;
             this.OnChanged?.Invoke();
-            return this.Bee.stateOfGame();
+            return this.Bee.StateOfGame();
         }
 
-        private void resetCommands()
+        private void ResetCommands()
         {
             foreach(var command in this.Commands)
             {
