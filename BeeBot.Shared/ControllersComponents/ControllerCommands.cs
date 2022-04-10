@@ -56,9 +56,12 @@ namespace BeeBot.Shared.ControllersComponents
                     int oldAngle = (int)this.Bee.rotation;
                     //time of animation
                     int time = 1;
-                    switch (command)
+                    //active command
+                    command.Active = true;
+                    this.OnChanged?.Invoke();
+                    switch (command.Type)
                     {
-                        case Command.moveForward:
+                        case CommandType.moveForward:
                             if (this.Bee.MoveForward())
                             {
                                 int newX = this.Bee.positionX * 100 + 50;
@@ -99,7 +102,7 @@ namespace BeeBot.Shared.ControllersComponents
                             }
                             this.Bee.animation = new Move(path,time);
                             break;
-                        case Command.moveBack:
+                        case CommandType.moveBack:
                             if (this.Bee.MoveBack())
                             {
                                 int newX = this.Bee.positionX * 100 + 50;
@@ -140,11 +143,11 @@ namespace BeeBot.Shared.ControllersComponents
                             }
                             this.Bee.animation = new Move(path, time);
                             break;
-                        case Command.rotateLeft:
+                        case CommandType.rotateLeft:
                             this.Bee.RotateLeft();
                             this.Bee.animation = new Rotate(oldAngle, (int)this.Bee.rotation, time);
                             break;
-                        case Command.rotateRight:
+                        case CommandType.rotateRight:
                             this.Bee.RotateRight();
                             this.Bee.animation = new Rotate(oldAngle, (int)this.Bee.rotation, time);
                             break;
@@ -153,6 +156,7 @@ namespace BeeBot.Shared.ControllersComponents
 
                     await Task.Delay((time * 900), this.CancellationToken.Token);
 
+                    command.Active = false;
                     this.Bee.animation = null;
                     this.Bee.collectReward();
                     this.OnChanged?.Invoke();
@@ -162,6 +166,7 @@ namespace BeeBot.Shared.ControllersComponents
             }
             catch (TaskCanceledException)
             {
+                this.resetCommands();
                 this.Bee.Reset();
                 this.Bee.animation = null;
                 this.CancellationToken = null;
@@ -171,6 +176,14 @@ namespace BeeBot.Shared.ControllersComponents
             this.CancellationToken = null;
             this.OnChanged?.Invoke();
             return this.Bee.stateOfGame();
+        }
+
+        private void resetCommands()
+        {
+            foreach(var command in this.Commands)
+            {
+                command.Active = false;
+            }
         }
 
         public event Action? OnChanged;

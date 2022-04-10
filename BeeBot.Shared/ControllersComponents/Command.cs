@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace BeeBot.Shared.ControllersComponents
 {
-    public enum Command
+    public class Command
+    {
+        public CommandType Type { get; set; }
+        public bool Active { get; set; }
+        public Command(CommandType type)
+        {
+            this.Type = type;
+            this.Active = false;
+        }
+    }
+    public enum CommandType
     {
         moveForward,
         rotateLeft,

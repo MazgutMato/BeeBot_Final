@@ -41,10 +41,10 @@ else if (this.StateOfGame == false)
 	</div>
 	<div class="card-body border-bottom border-3 border-dark">
 		<div class="row d-flex p-3 justify-content-center">
-			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateLeft)" />
-			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.moveForward)" />
-			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.moveBack)" />
-			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(Command.rotateRight)" />
+			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.rotateLeft))" />
+			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.moveForward))" />
+			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.moveBack))" />
+			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.addCommand(new Command(CommandType.rotateRight))" />
 		</div>
 		<div class="row d-flex p-3 justify-content-center">
 			<img src="images/commands/playl.svg" class="command command_pick" @onclick="async () => {
@@ -71,28 +71,37 @@ else if (this.StateOfGame == false)
 				@for (var i = 0; i < controllerCommands.Commands.Count; i++)
 				{
 					int cisloPrikazu = i;
-					switch (controllerCommands.Commands[i])
+					Command actualCommand = controllerCommands.Commands[i];
+					switch (actualCommand.Type)
 					{
-						case Command.moveForward:
-						<img src="images/commands/up.svg" class="command command_remove" @onclick="() => {
+						case CommandType.moveForward:
+						<img src="images/commands/up.svg" class="command command_remove" 
+							style="@(actualCommand.Active == true ? "filter: invert(11%) sepia(61%) saturate(5810%) hue-rotate(6deg) brightness(95%) contrast(106%);" : "")" 
+							@onclick="() => {
 							controllerCommands.CancellationToken?.Cancel();
 							controllerCommands.Commands.RemoveAt(cisloPrikazu);
 							}" />
 							break;
-						case Command.moveBack:
-							<img src="images/commands/down.svg" class="command command_remove" @onclick="() => {
+						case CommandType.moveBack:
+							<img src="images/commands/down.svg" class="command command_remove"
+							style="@(actualCommand.Active == true ? "filter: invert(11%) sepia(61%) saturate(5810%) hue-rotate(6deg) brightness(95%) contrast(106%);" : "")"
+							@onclick="() => {
 							controllerCommands.CancellationToken?.Cancel();
 							controllerCommands.Commands.RemoveAt(cisloPrikazu);
 							}"/>
 							break;
-						case Command.rotateLeft:
-							<img src="images/commands/rotate_left.svg" class="command command_remove" @onclick="() => {
+						case CommandType.rotateLeft:
+							<img src="images/commands/rotate_left.svg" class="command command_remove"
+							style="@(actualCommand.Active == true ? "filter: invert(11%) sepia(61%) saturate(5810%) hue-rotate(6deg) brightness(95%) contrast(106%);" : "")"
+							@onclick="() => {
 							controllerCommands.CancellationToken?.Cancel();
 							controllerCommands.Commands.RemoveAt(cisloPrikazu);
 							}"/>
 							break;
-						case Command.rotateRight:
-							<img src="images/commands/rotate_right.svg" class="command command_remove" @onclick="() => {
+						case CommandType.rotateRight:
+							<img src="images/commands/rotate_right.svg" class="command command_remove"
+							style="@(actualCommand.Active == true ? "filter: invert(11%) sepia(61%) saturate(5810%) hue-rotate(6deg) brightness(95%) contrast(106%);" : "")"
+							@onclick="() => {
 							controllerCommands.CancellationToken?.Cancel();
 							controllerCommands.Commands.RemoveAt(cisloPrikazu);
 							}"/>
@@ -105,6 +114,17 @@ else if (this.StateOfGame == false)
 </div>
 
 @code {
+	#region Overrides of ComponentBase
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+
+		this.controllerCommands.OnChanged += this.StateHasChanged;
+	}
+
+	#endregion
+
 	public bool? StateOfGame { get; set; }
 
 	async Task runProgram()
