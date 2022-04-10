@@ -99,10 +99,10 @@
 				<div class="card-body">
 					<p>Vyber kliknutím na obrázok a pridaj na mapu:</p>
 
-					<div class="row p-2 m-1 border border-dark rounded border-3">
+					<div class="row p-2 m-1 border border-dark rounded border-3">	
 						<p>Prekazka</p>
-						<div class="col-5">
-							<svg style="width: auto; height: auto;">
+						<div class="col-6">							
+							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 											@(this.controllerMap.BlockEditor == BlockType.Barrier ? "5px" : "1px");
 											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
@@ -114,11 +114,11 @@
 									   @onclick="() => controllerMap.BlockEditor = BlockType.Barrier"></image>
 							</svg>
 						</div>
-						<div class="col-7">
+						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
 								<input class="form-control" value="@this.map.BarrierFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Barrier,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
 								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Barrier,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
@@ -126,8 +126,8 @@
 
 					<div class="row p-2 m-1 border border-dark rounded border-3">
 						<p>Ciel</p>
-						<div class="col-5">
-							<svg style="width: auto; height: auto;">
+						<div class="col-6">
+							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 											@(this.controllerMap.BlockEditor == BlockType.Finish ? "5px" : "1px");
 											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
@@ -139,11 +139,11 @@
 									   @onclick="() => controllerMap.BlockEditor = BlockType.Finish"></image>
 							</svg>
 						</div>
-						<div class="col-7">
+						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
 								<input class="form-control" value="@this.map.FinishFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Finish,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
 								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Finish,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
@@ -151,8 +151,8 @@
 
 					<div class="row p-2 m-1 border border-dark rounded border-3">
 						<p>Prázdne pole</p>
-						<div class="col-5">
-							<svg style="width: auto; height: auto;">
+						<div class="col-6">
+							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 									@(this.controllerMap.BlockEditor == BlockType.None ? "5px" : "1px"); ;
 									opacity: 1; fill: white" vector-effect="non-scaling-stroke"
@@ -165,11 +165,11 @@
 									   @onclick="() => controllerMap.BlockEditor = BlockType.None"></image>
 							</svg>
 						</div>
-						<div class="col-7">
+						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
 								<input class="form-control" value="@this.map.RectangleFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.None,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
 								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.None,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
@@ -177,8 +177,8 @@
 
 					<div class="row p-2 m-1 border border-dark rounded border-3">
 						<p>Odmena</p>
-						<div class="col-5">
-							<svg style="width: auto; height: auto;">
+						<div class="col-6">
+							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
 								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
 											@(this.controllerMap.BlockEditor == BlockType.Reward ? "5px" : "1px");
 											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
@@ -190,11 +190,11 @@
 									   @onclick="() => controllerMap.BlockEditor = BlockType.Reward"></image>
 							</svg>
 						</div>
-						<div class="col-7">
+						<div class="col-6">
 							<div class="col-12">
 								<label>Zadaj link!</label>
 								<input class="form-control" value="@this.map.RewardFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.changeFile(BlockType.Reward,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmen</button>
+								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
 								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.changeFile(BlockType.Reward,"")'><i class="bi bi-x-square"></i></button>
 							</div>
 						</div>
