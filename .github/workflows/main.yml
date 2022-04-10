@@ -28,7 +28,7 @@ jobs:
       run: |
         mv wwwroot/* .
         rmdir wwwroot
-        sed -i -e "s/base href=\".*\"/base href=\"\/BeeBot\/\"/" index.html
+        sed -i -e "s/base href=\".*\"/base href=\"\/BeeBot_Final\/\"/" index.html
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
