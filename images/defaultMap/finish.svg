@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg3374"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="beeHive.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3376"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.74029882"
+     inkscape:cx="398.48773"
+     inkscape:cy="345.80631"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs3371" />
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1511">
+      <path
+         style="fill:#ffe477;fill-opacity:1;stroke:none;stroke-width:2.56893;stroke-linejoin:round"
+         d="M 10,30.968787 V 52.421934 H 89.612376 V 30.968787 Z"
+         id="path1492-6-0-9-9" />
+      <path
+         style="fill:#ffdd55;fill-opacity:1;stroke:none;stroke-width:2.56893;stroke-linejoin:round"
+         d="M 10,49.515601 V 70.968774 H 89.612376 V 49.515601 Z"
+         id="path1492-1-7-45-0-2" />
+      <path
+         style="fill:#ffea96;fill-opacity:1;stroke:none;stroke-width:1.97602;stroke-linejoin:round"
+         d="M 35.5028,10 C 21.408823,10 10.057749,19.56076 10.003989,31.453174 H 89.612376 C 89.558888,19.56076 78.207542,10 64.113565,10 Z"
+         id="rect919-1-1-4-5" />
+      <path
+         style="fill:#ffcc00;stroke:none;stroke-width:1.97602;stroke-linejoin:round"
+         d="M 64.501302,90 C 78.595165,90 89.946248,80.439242 90,68.546841 H 10.391623 C 10.445109,80.439242 21.796571,90 35.890434,90 Z"
+         id="rect919-7-1-3-8-4" />
+      <path
+         id="rect8045"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:2.31125;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 57.715439,65.782081 c -3.758754,0 -6.784285,2.725813 -6.784285,6.112053 V 90 H 64.501302 V 71.894134 c 0,-3.38624 -3.027108,-6.112053 -6.785863,-6.112053 z" />
+    </g>
+  </g>
+</svg>
