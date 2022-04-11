@@ -46,7 +46,7 @@ namespace BeeBot.Shared.MapComponents
                     if (i < oldX && j < oldY)
                     {
                         this.PlayArea[i][j].Type = oldArea[i][j].Type;
-                        if(oldArea[i][j].Type == BlockType.Reward)
+                        if(oldArea[i][j].Type == BlockType.REWARD)
                         {
                             this.UncollectedReward.Add(this.PlayArea[i][j]);
                         }
@@ -69,7 +69,7 @@ namespace BeeBot.Shared.MapComponents
                     {
                         X = i,
                         Y = j,
-                        Type = BlockType.None
+                        Type = BlockType.RECTANGLE
                     };
                 }
             }
@@ -80,7 +80,7 @@ namespace BeeBot.Shared.MapComponents
             foreach (Block block in map.Blocks)
             {
                 this.PlayArea[block.X][block.Y] = block;
-                if(block.Type == BlockType.Reward)
+                if(block.Type == BlockType.REWARD)
 				{
                     this.UncollectedReward.Add(block);
 				}

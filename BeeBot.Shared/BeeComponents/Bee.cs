@@ -30,7 +30,7 @@ namespace BeeBot.Shared.BeeComponents
             this.Animation = null;
             foreach (Block block in this.CollectedBlocks)
             {
-                this.playingArea.PlayArea[block.X][block.Y].Type = BlockType.Reward;
+                this.playingArea.PlayArea[block.X][block.Y].Type = BlockType.REWARD;
                 this.playingArea.UncollectedReward.Add(block);
             }
             this.CollectedBlocks.Clear();
@@ -43,7 +43,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.UP:
                     if (this.PositionY > 0)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY - 1].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY - 1].Type == BlockType.BARRIER)
                             return false;
                         this.PositionY--;
                         return true;
@@ -52,7 +52,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.DOWN:
                     if (this.PositionY < this.playingArea.SizeY - 1)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY + 1].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY + 1].Type == BlockType.BARRIER)
                             return false;
                         this.PositionY++;
                         return true;
@@ -61,7 +61,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.RIGHT:
                     if (this.playingArea.SizeX - 1 > this.PositionX)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX + 1][this.PositionY].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX + 1][this.PositionY].Type == BlockType.BARRIER)
                             return false;
                         this.PositionX++;
                         return true;
@@ -70,7 +70,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.LEFT:
                     if (this.PositionX > 0)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX - 1][this.PositionY].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX - 1][this.PositionY].Type == BlockType.BARRIER)
                             return false;
                         this.PositionX--;
                         return true;
@@ -88,7 +88,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.UP:
                     if (this.PositionY < this.playingArea.SizeY - 1)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY + 1].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY + 1].Type == BlockType.BARRIER)
                             return false;
                         this.PositionY++;                        
                         return true;
@@ -97,7 +97,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.DOWN:
                     if (this.PositionY > 0)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY - 1].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX][this.PositionY - 1].Type == BlockType.BARRIER)
                             return false;
                         this.PositionY--;
                         return true;
@@ -106,7 +106,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.RIGHT:
                     if (this.PositionX > 0)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX - 1][this.PositionY ].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX - 1][this.PositionY ].Type == BlockType.BARRIER)
                             return false;
                         this.PositionX--;
                         return true;
@@ -115,7 +115,7 @@ namespace BeeBot.Shared.BeeComponents
                 case Rotation.LEFT:
                     if (this.PositionX < this.playingArea.SizeX - 1)
                     {
-                        if (this.playingArea.PlayArea[this.PositionX + 1][this.PositionY].Type == BlockType.Barrier)
+                        if (this.playingArea.PlayArea[this.PositionX + 1][this.PositionY].Type == BlockType.BARRIER)
                             return false;
                         this.PositionX++;
                         return true;
@@ -149,16 +149,16 @@ namespace BeeBot.Shared.BeeComponents
         }
         public void CollectReward()
         {
-            if(this.playingArea.PlayArea[this.PositionX][this.PositionY].Type == BlockType.Reward)
+            if(this.playingArea.PlayArea[this.PositionX][this.PositionY].Type == BlockType.REWARD)
             {
                 this.playingArea.UncollectedReward.Remove(this.playingArea.PlayArea[this.PositionX][this.PositionY]);
                 this.CollectedBlocks.Add(this.playingArea.PlayArea[this.PositionX][this.PositionY]);
-                this.playingArea.PlayArea[this.PositionX][this.PositionY].Type = BlockType.None;
+                this.playingArea.PlayArea[this.PositionX][this.PositionY].Type = BlockType.RECTANGLE;
             }
         }
         private bool IsHome()
         {
-            return this.playingArea.PlayArea[this.PositionX][this.PositionY].Type == BlockType.Finish;
+            return this.playingArea.PlayArea[this.PositionX][this.PositionY].Type == BlockType.FINISH;
         }
         public bool StateOfGame()
         {

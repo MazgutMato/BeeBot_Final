@@ -18,10 +18,10 @@ namespace BeeBot.Shared.ControllersComponents
     }
     public enum CommandType
     {
-        moveForward,
-        rotateLeft,
-        rotateRight,
-        moveBack,
-        none
+        MOVEFORWARD,
+        ROTATELEFT,
+        ROTATERIGHT,
+        MOVEBACK,
+        NONE
     }
 }

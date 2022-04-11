@@ -15,7 +15,7 @@ namespace BeeBot.Shared.MapComponents
         {
             this.X = 0;
             this.Y = 0;
-            this.Type = BlockType.None;
+            this.Type = BlockType.RECTANGLE;
         }
         public Block(int x, int y, BlockType type) {
             this.X = x;

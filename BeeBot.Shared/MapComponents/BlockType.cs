@@ -8,9 +8,9 @@ namespace BeeBot.Shared.MapComponents
 {
     public enum BlockType
     {
-        None,
-        Barrier,
-        Reward,
-        Finish
+        RECTANGLE,
+        BARRIER,
+        REWARD,
+        FINISH
     }
 }

@@ -27,7 +27,7 @@
 				<g>				
 				@switch (this.playingArea.PlayArea[mapX][mapY].Type)
 				{
-					case BlockType.Barrier:
+					case BlockType.BARRIER:
 						<image href="@(this.map.BarrierFile == "" ? "images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
 						   x="@(x*100)"
 						   y="@(y*100)"
@@ -38,7 +38,7 @@
                                 this.controllerMap.ChangeRectangleType(mapX,mapY);
                             }"></image>
 						break;
-					case BlockType.Finish:
+					case BlockType.FINISH:
 						<image href="@(this.map.FinishFile == "" ? "images/defaultMap/finish.svg" :  this.map.FinishFile)"
 						   x="@(x*100)"
 						   y="@(y*100)"
@@ -49,7 +49,7 @@
                                 this.controllerMap.ChangeRectangleType(mapX,mapY);
                             }"></image>
 						break;
-					case BlockType.Reward:
+					case BlockType.REWARD:
 						<image href="@(this.map.RewardFile == "" ? "images/defaultMap/reward.svg" :  this.map.RewardFile)"
 						   x="@(x*100)"
 						   y="@(y*100)"
@@ -60,7 +60,7 @@
                                 this.controllerMap.ChangeRectangleType(mapX,mapY);
                             }"></image>
 							break;
-					case BlockType.None:
+					case BlockType.RECTANGLE:
 							break;
 					}
 				</g>

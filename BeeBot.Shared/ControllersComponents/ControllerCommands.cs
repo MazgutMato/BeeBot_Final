@@ -61,7 +61,7 @@ namespace BeeBot.Shared.ControllersComponents
                     this.OnChanged?.Invoke();
                     switch (command.Type)
                     {
-                        case CommandType.moveForward:
+                        case CommandType.MOVEFORWARD:
                             if (this.Bee.MoveForward())
                             {
                                 int newX = this.Bee.PositionX * 100 + 50;
@@ -102,7 +102,7 @@ namespace BeeBot.Shared.ControllersComponents
                             }
                             this.Bee.Animation = new Move(path,time);
                             break;
-                        case CommandType.moveBack:
+                        case CommandType.MOVEBACK:
                             if (this.Bee.MoveBack())
                             {
                                 int newX = this.Bee.PositionX * 100 + 50;
@@ -143,11 +143,11 @@ namespace BeeBot.Shared.ControllersComponents
                             }
                             this.Bee.Animation = new Move(path, time);
                             break;
-                        case CommandType.rotateLeft:
+                        case CommandType.ROTATELEFT:
                             this.Bee.RotateLeft();
                             this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, time);
                             break;
-                        case CommandType.rotateRight:
+                        case CommandType.ROTATERIGHT:
                             this.Bee.RotateRight();
                             this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, time);
                             break;

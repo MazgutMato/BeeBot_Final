@@ -17,7 +17,7 @@ namespace BeeBot.Shared.ControllersComponents
 		{
 			this.map = map;
 			this.playingArea = playingArea;
-			this.BlockEditor = BlockType.None;
+			this.BlockEditor = BlockType.RECTANGLE;
 		}
 
 		public void IncreaseX()
@@ -52,11 +52,11 @@ namespace BeeBot.Shared.ControllersComponents
 		}
 		public void ChangeRectangleType(int x,int y)
         {
-			if (this.BlockEditor == BlockType.Reward && this.playingArea.PlayArea[x][y].Type != BlockType.Reward)
+			if (this.BlockEditor == BlockType.REWARD && this.playingArea.PlayArea[x][y].Type != BlockType.REWARD)
             {
-				this.playingArea.PlayArea[x][y].Type = BlockType.Reward;
+				this.playingArea.PlayArea[x][y].Type = BlockType.REWARD;
 				this.playingArea.UncollectedReward.Add(this.playingArea.PlayArea[x][y]);
-			}else if (this.BlockEditor != BlockType.Reward && this.playingArea.PlayArea[x][y].Type == BlockType.Reward)
+			}else if (this.BlockEditor != BlockType.REWARD && this.playingArea.PlayArea[x][y].Type == BlockType.REWARD)
 			{
 				this.playingArea.UncollectedReward.Remove(this.playingArea.PlayArea[x][y]);
 				this.playingArea.PlayArea[x][y].Type = this.BlockEditor;
@@ -74,7 +74,7 @@ namespace BeeBot.Shared.ControllersComponents
             {
                 for (int j = 0; j < this.map.SizeY; j++)
                 {
-					if (this.playingArea.PlayArea[i][j].Type != BlockType.None)
+					if (this.playingArea.PlayArea[i][j].Type != BlockType.RECTANGLE)
                     {
 						this.map.Blocks.Add(this.playingArea.PlayArea[i][j]);
                     }
@@ -110,16 +110,16 @@ namespace BeeBot.Shared.ControllersComponents
 		{
 			switch (type)
 			{
-				case BlockType.None:
+				case BlockType.RECTANGLE:
 					this.map.RectangleFile = fileName;
 					break;
-				case BlockType.Reward:
+				case BlockType.REWARD:
 					this.map.RewardFile= fileName;
 					break;
-				case BlockType.Barrier:
+				case BlockType.BARRIER:
 					this.map.BarrierFile= fileName;
 					break;
-				case BlockType.Finish:
+				case BlockType.FINISH:
 					this.map.FinishFile = fileName;
 					break;
 			}

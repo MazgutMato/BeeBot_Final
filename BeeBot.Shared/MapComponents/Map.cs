@@ -28,9 +28,9 @@ namespace BeeBot.Shared.MapComponents
             this.BarrierFile = "";
             this.FinishFile = "";
             this.Blocks = new List<Block>{
-                new Block(1,0,BlockType.Barrier),
-                new Block(1,1,BlockType.Reward),
-                new Block(2,0,BlockType.Finish),
+                new Block(1,0,BlockType.BARRIER),
+                new Block(1,1,BlockType.REWARD),
+                new Block(2,0,BlockType.FINISH),
             };
         }
     }
