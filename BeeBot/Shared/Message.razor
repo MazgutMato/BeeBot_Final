@@ -1,0 +1,24 @@
+﻿@if (Visibility)
+{
+	<div class="card mt-3 border border-3 border-dark @(Success == true ? "bg-success" : "bg-danger")">
+		<div class="card-body border-3 border-dark">
+			<div class="row p-1">
+				<div class="col-10 d-flex align-items-center justify-content-center">
+					@Text
+				</div>
+				<div class="col-2 d-flex align-items-center justify-content-center">
+					<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => Visibility = false"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+@code {
+	[Parameter]
+	public bool Visibility { get; set; } = true;
+	[Parameter]
+	public bool Success { get; set; }
+	[Parameter]
+	public string Text { get; set; } = "";
+}

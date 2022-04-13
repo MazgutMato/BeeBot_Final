@@ -18,33 +18,13 @@
 			}
 			@if(SuccesedLoad == true)
 			{
-				<div class="card mt-3 border border-3 border-dark bg-success">
-					<div class="card-body border-3 border-dark">
-						<div class="row p-1">
-							<div class="col-10 d-flex align-items-center justify-content-center">
-								Mapa bola úspešne zmenena!
-							</div>							
-							<div class="col-2 d-flex align-items-center justify-content-center">
-								<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => SuccesedLoad = null"></i>
-							</div>							
-						</div>
-					</div>
-				</div>
+				<Message Success="true" Text="Mapa bola úspešne zmenena!" />
+				@(SuccesedLoad = null);
 				
 			} else if (SuccesedLoad == false)
 			{
-				<div class="card mt-3 border border-3 border-dark bg-danger">
-					<div class="card-body border-3 border-dark">
-						<div class="row d-flex p-1">
-							<div class="col-10 d-flex align-items-center justify-content-center">
-								Chyba pri načitani mapy!
-							</div>							
-							<div class="col-2 d-flex align-items-center justify-content-center">
-								<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => SuccesedLoad = null"></i>
-							</div>							
-						</div>
-					</div>
-				</div>
+				<Message Success="false" Text="Chyba pri načitani mapy!" />
+				@(SuccesedLoad = null);
 			}
 		</div>
 	</div>
@@ -54,7 +34,6 @@
 	private IBrowserFile loadedFile;
 	private bool isLoading;
 	private bool? SuccesedLoad = null;
-	private string ErrorLoad = "";
 
 	async Task LoadMap(InputFileChangeEventArgs e){
 		this.controllerCommands.DeleteCommands();
@@ -69,7 +48,6 @@
 		} catch (Exception ex)
 		{
 			this.SuccesedLoad = false;
-			ErrorLoad = ex.Message;
 		}
 		this.isLoading = false;
 	}

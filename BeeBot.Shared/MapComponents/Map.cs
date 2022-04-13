@@ -12,10 +12,7 @@ namespace BeeBot.Shared.MapComponents
         public string Description { get; set;}
         public int SizeX { get; set; }
         public int SizeY { get; set; }
-        public string RectangleFile { get; set; }
-        public string BarrierFile { get; set; }
-        public string RewardFile { get; set; }
-        public string FinishFile { get; set; }
+        public Dictionary<BlockType, string> Files { get; set; }
         public ICollection<Block> Blocks { get; set; }
         public Map()
         {
@@ -23,10 +20,11 @@ namespace BeeBot.Shared.MapComponents
             this.Description = "Pozbieraj všetky kvetiny, vyhni sa kríkom a dostaň sa do úľu!";
             this.SizeX = 3;
             this.SizeY = 2;
-            this.RectangleFile = "";
-            this.RewardFile = "";
-            this.BarrierFile = "";
-            this.FinishFile = "";
+            this.Files = new Dictionary<BlockType, string>();
+            this.Files.Add(BlockType.REWARD, "images/defaultMap/reward.svg");
+            this.Files.Add(BlockType.RECTANGLE, "images/defaultMap/rectangle.svg");
+            this.Files.Add(BlockType.BARRIER, "images/defaultMap/barrier.svg");
+            this.Files.Add(BlockType.FINISH, "images/defaultMap/finish.svg");
             this.Blocks = new List<Block>{
                 new Block(1,0,BlockType.BARRIER),
                 new Block(1,1,BlockType.REWARD),

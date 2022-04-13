@@ -31,48 +31,48 @@
 				<div class="card m-3 border border-3 border-dark">
 					<div class="card-body">
 						<div class="row  p-1">
-								<div class="col-4 col-xl-2 p-2 border border-2 border-dark">
-									<p>Nova mapa</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.NewMap()">
-										<i class="bi bi-file-earmark-plus"></i>
-									</button>
-								</div>
-								<div class="col-4 col-xl-2 p-2 border border-2 border-dark">
-									<p>Ulož mapu</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="DownloadMap">
-										<i class="bi bi-download"></i>
-									</button>
-								</div>
-								<div class="col-4 col-xl-2 p-2 border border-2 border-dark">
-									<p>Zmaž plochu</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.DeletePlayArea()">
-										<i class="bi bi-trash"></i>
-									</button>
-								</div>
-								<div class="col-6 col-xl-3 p-2 border border-2 border-dark">
-									<p>Šírka mapy: @map.SizeX</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.IncreaseX()">
-										<i class="bi bi-plus-lg"></i>
-									</button>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.DecreaseX()">
-										<i class="bi bi-dash"></i>
-									</button>
-								</div>
-								<div class="col-6 col-xl-3 p-2 border border-2 border-dark">
-									<p>Výška mapy: @map.SizeY</p>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.IncreaseY()">
-										<i class="bi bi-plus-lg"></i>
-									</button>
-									<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.DecreaseY()">
-										<i class="bi bi-dash"></i>
-									</button>
-								</div>									
+							<div class="col-4 col-xl-2 p-2 border border-2 border-dark">
+								<p>Nova mapa</p>
+								<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.NewMap()">
+									<i class="bi bi-file-earmark-plus"></i>
+								</button>
+							</div>
+							<div class="col-4 col-xl-2 p-2 border border-2 border-dark">
+								<p>Ulož mapu</p>
+								<button class="btn btn-dark btn-outline-warning" @onclick="DownloadMap">
+									<i class="bi bi-download"></i>
+								</button>
+							</div>
+							<div class="col-4 col-xl-2 p-2 border border-2 border-dark">
+								<p>Zmaž plochu</p>
+								<button class="btn btn-dark btn-outline-warning" @onclick="() => this.controllerMap.DeletePlayArea()">
+									<i class="bi bi-trash"></i>
+								</button>
+							</div>
+							<div class="col-6 col-xl-3 p-2 border border-2 border-dark">
+								<p>Šírka mapy: @map.SizeX</p>
+								<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.IncreaseX()">
+									<i class="bi bi-plus-lg"></i>
+								</button>
+								<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.DecreaseX()">
+									<i class="bi bi-dash"></i>
+								</button>
+							</div>
+							<div class="col-6 col-xl-3 p-2 border border-2 border-dark">
+								<p>Výška mapy: @map.SizeY</p>
+								<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.IncreaseY()">
+									<i class="bi bi-plus-lg"></i>
+								</button>
+								<button class="btn btn-dark btn-outline-warning" @onclick="() => controllerMap.DecreaseY()">
+									<i class="bi bi-dash"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center m-3">
-				<BeeBotMap/>
+				<BeeBotMap />
 			</div>
 		</div>
 
@@ -97,106 +97,13 @@
 				<div class="card-body">
 					<p>Vyber kliknutím na obrázok a pridaj na mapu:</p>
 
-					<div class="row p-2 m-1 border border-dark rounded border-3">	
-						<p>Prekazka</p>
-						<div class="col-6">							
-							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
-								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
-											@(this.controllerMap.BlockEditor == BlockType.BARRIER ? "5px" : "1px");
-											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
-								<image href="@(this.map.BarrierFile == "" ? "images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
-									   x="10"
-									   y="10"
-									   height="100"
-									   width="100"
-									   @onclick="() => controllerMap.BlockEditor = BlockType.BARRIER"></image>
-							</svg>
-						</div>
-						<div class="col-6">
-							<div class="col-12">
-								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.BarrierFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.BARRIER,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.BARRIER,"")'><i class="bi bi-x-square"></i></button>
-							</div>
-						</div>
-					</div>
+					<ImageChange Description="Prekážka" Type="BlockType.BARRIER" />
 
-					<div class="row p-2 m-1 border border-dark rounded border-3">
-						<p>Ciel</p>
-						<div class="col-6">
-							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
-								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
-											@(this.controllerMap.BlockEditor == BlockType.FINISH ? "5px" : "1px");
-											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
-								<image href="@(this.map.FinishFile == "" ? "images/defaultMap/finish.svg" :  this.map.FinishFile)"
-									   height="100"
-									   width="100"
-									   x="10"
-									   y="10"
-									   @onclick="() => controllerMap.BlockEditor = BlockType.FINISH"></image>
-							</svg>
-						</div>
-						<div class="col-6">
-							<div class="col-12">
-								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.FinishFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.FINISH,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.FINISH,"")'><i class="bi bi-x-square"></i></button>
-							</div>
-						</div>
-					</div>
+					<ImageChange Description="Cieľ" Type="BlockType.FINISH" />
 
-					<div class="row p-2 m-1 border border-dark rounded border-3">
-						<p>Prázdne pole</p>
-						<div class="col-6">
-							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
-								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
-									@(this.controllerMap.BlockEditor == BlockType.RECTANGLE ? "5px" : "1px"); ;
-									opacity: 1; fill: white" vector-effect="non-scaling-stroke"
-									  @onclick="() => controllerMap.BlockEditor = BlockType.RECTANGLE" />
-								<image href="@(this.map.RectangleFile == "" ? "images/defaultMap/rectangle.svg" :  this.map.RectangleFile)"
-									   height="100"
-									   width="100"
-									   x="10"
-									   y="10"
-									   @onclick="() => controllerMap.BlockEditor = BlockType.RECTANGLE"></image>
-							</svg>
-						</div>
-						<div class="col-6">
-							<div class="col-12">
-								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.RectangleFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.RECTANGLE,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.RECTANGLE,"")'><i class="bi bi-x-square"></i></button>
-							</div>
-						</div>
-					</div>
+					<ImageChange Description="Hracie pole" Type="BlockType.RECTANGLE" />
 
-					<div class="row p-2 m-1 border border-dark rounded border-3">
-						<p>Odmena</p>
-						<div class="col-6">
-							<svg viewBox="0 0 120 120" style="width: auto; height: auto; max-width: 100%; max-height: 30vh">
-								<rect x="5" y="5" width="110" height="110" style="stroke: black; stroke-width:
-											@(this.controllerMap.BlockEditor == BlockType.REWARD ? "5px" : "1px");
-											opacity: 1; fill: none" vector-effect="non-scaling-stroke" />
-								<image href="@(this.map.RewardFile == "" ? "images/defaultMap/reward.svg" :  this.map.RewardFile)"
-									   height="100"
-									   width="100"
-									   x="10"
-									   y="10"
-									   @onclick="() => controllerMap.BlockEditor = BlockType.REWARD"></image>
-							</svg>
-						</div>
-						<div class="col-6">
-							<div class="col-12">
-								<label>Zadaj link!</label>
-								<input class="form-control" value="@this.map.RewardFile" @onchange="@((ChangeEventArgs e) => this.controllerMap.ChangeFile(BlockType.REWARD,e?.Value?.ToString()))" />
-								<button class="btn btn-dark btn-outline-warning mt-2">Zmeň obrázok</button>
-								<button class="btn btn-dark btn-outline-warning mt-2" @onclick='() => this.controllerMap.ChangeFile(BlockType.REWARD,"")'><i class="bi bi-x-square"></i></button>
-							</div>
-						</div>
-					</div>
+					<ImageChange Description="Odmena" Type="BlockType.REWARD" />
 
 				</div>
 			</div>
@@ -209,6 +116,7 @@
 {
 	public bool SuccessDownload { get; set; }
 	[Inject] IBlazorDownloadFileService BlazorDownloadFileService { get; set; }
+
 	#region Overrides of ComponentBase
 
 	protected override void OnInitialized()
@@ -225,7 +133,7 @@
 	{
 		string jsonMap = JsonSerializer.Serialize(this.controllerMap.SaveMap());
 		var bytes = Encoding.ASCII.GetBytes(jsonMap);
-		var task = await BlazorDownloadFileService.DownloadFile(this.map.Name + ".map", bytes,CancellationToken.None,"application/octet-stream");
+		var task = await BlazorDownloadFileService.DownloadFile(this.map.Name + ".map", bytes, CancellationToken.None, "application/octet-stream");
 		if (task.Succeeded)
 		{
 			this.SuccessDownload = true;

@@ -13,7 +13,7 @@
 				int mapX = x;
 				int mapY = y;
 				<g>
-					<image href="@(this.map.RectangleFile == "" ? "images/defaultMap/rectangle.svg" :  this.map.RectangleFile)"
+					<image href="@(this.map.Files[BlockType.RECTANGLE])"
 					   x="@(x*100)"
 					   y="@(y*100)"
 					   height="100"
@@ -24,45 +24,17 @@
 							}">
 					</image>
 				</g>				
-				<g>				
-				@switch (this.playingArea.PlayArea[mapX][mapY].Type)
-				{
-					case BlockType.BARRIER:
-						<image href="@(this.map.BarrierFile == "" ? "images/defaultMap/barrier.svg" :  this.map.BarrierFile)"
-						   x="@(x*100)"
-						   y="@(y*100)"
-						   height="100"
-						   width="100"
-						   @onclick="() => {
-                            if (this.playingArea.Mode == Mode.Editing)
-                                this.controllerMap.ChangeRectangleType(mapX,mapY);
-                            }"></image>
-						break;
-					case BlockType.FINISH:
-						<image href="@(this.map.FinishFile == "" ? "images/defaultMap/finish.svg" :  this.map.FinishFile)"
-						   x="@(x*100)"
-						   y="@(y*100)"
-						   height="100"
-						   width="100"
-						   @onclick="() => {
-                            if (this.playingArea.Mode == Mode.Editing)
-                                this.controllerMap.ChangeRectangleType(mapX,mapY);
-                            }"></image>
-						break;
-					case BlockType.REWARD:
-						<image href="@(this.map.RewardFile == "" ? "images/defaultMap/reward.svg" :  this.map.RewardFile)"
-						   x="@(x*100)"
-						   y="@(y*100)"
-						   height="100"
-						   width="100"
-						   @onclick="() => {
-                            if (this.playingArea.Mode == Mode.Editing)
-                                this.controllerMap.ChangeRectangleType(mapX,mapY);
-                            }"></image>
-							break;
-					case BlockType.RECTANGLE:
-							break;
-					}
+				<g>
+					<image href="@(this.map.Files[this.playingArea.PlayArea[mapX][mapY].Type])"
+					   x="@(x*100)"
+					   y="@(y*100)"
+					   height="100"
+					   width="100"
+					   @onclick="() => {
+								if (this.playingArea.Mode == Mode.Editing)
+									this.controllerMap.ChangeRectangleType(mapX,mapY);
+								}">
+					</image>			
 				</g>
 			}
 		}

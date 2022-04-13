@@ -1,0 +1,86 @@
+﻿@inject Map map
+@inject ControllerMap controllerMap
+
+<div class="row p-2 m-1 border border-dark rounded border-3">
+	<p>@Description</p>
+	<div class="col-12 d-flex justify-content-center">
+		<img src="@map.Files[Type]"
+			 style="width: 100%; max-width: 150px; height: auto; border: 5px solid
+									@(this.controllerMap.BlockEditor == Type ? "green" : "#555");"
+			 @onclick="() => controllerMap.BlockEditor = Type" />
+	</div>
+	<label class="mt-2">Zmeň obrázok zadaním súboru</label>
+	@if (isLoading)
+	{
+		<p>Nacitanie obrazku</p>
+	}
+	else
+	{
+		<InputFile OnChange="ChangeFile" accept="image/*"/>
+		@if (SuccesedLoad == true)
+		{
+			<Message Success="true" Text="Obrázok bol úspešne zmenený!" />
+			@(SuccesedLoad = null)
+			;
+
+		}
+		else if (SuccesedLoad == false)
+		{
+			<Message Success="false" Text="Chyba pri načitani obrázku!" />
+			@(SuccesedLoad = null)
+			;
+		}
+		<button class="btn btn-dark btn-outline-warning mt-2"
+			@onclick='() => this.ResetFile()'>
+			<i class="bi bi-x-square"></i>
+		</button>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public string Description { get; set; } = "";
+	[Parameter]
+	public BlockType Type { get; set; }
+
+	private IBrowserFile loadedFile;
+	private bool isLoading;
+	private bool? SuccesedLoad = null;
+
+	private void ResetFile()
+	{
+		switch (Type)
+		{
+			case (BlockType.REWARD):
+				this.controllerMap.ChangeFile(Type, "images/defaultMap/reward.svg");
+				break;
+			case (BlockType.FINISH):
+				this.controllerMap.ChangeFile(Type, "images/defaultMap/finish.svg");
+				break;
+			case (BlockType.RECTANGLE):
+				this.controllerMap.ChangeFile(Type, "images/defaultMap/rectangle.svg");
+				break;
+			case (BlockType.BARRIER):
+				this.controllerMap.ChangeFile(Type, "images/defaultMap/barrier.svg");
+				break;
+		}
+	}
+
+	async Task ChangeFile(InputFileChangeEventArgs e)
+	{
+		this.isLoading = true;
+		this.SuccesedLoad = null;
+		try
+		{
+			loadedFile = e.File;
+			var buffer = new byte[loadedFile.Size];
+			await loadedFile.OpenReadStream().ReadAsync(buffer);
+			controllerMap.ChangeFile(Type, $"data:{loadedFile.ContentType};base64,{Convert.ToBase64String(buffer)}");
+			this.SuccesedLoad = true;
+		} catch (Exception ex)
+		{
+			this.SuccesedLoad = false;
+		}
+		this.isLoading = false;
+	}
+}

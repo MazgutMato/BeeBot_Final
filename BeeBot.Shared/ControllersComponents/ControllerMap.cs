@@ -86,10 +86,7 @@ namespace BeeBot.Shared.ControllersComponents
         {
 			this.map.Name = map.Name;
 			this.map.Description = map.Description;
-			this.map.RewardFile = map.RewardFile;
-			this.map.BarrierFile = map.BarrierFile;
-			this.map.FinishFile = map.FinishFile;
-			this.map.RectangleFile = map.RectangleFile;
+			this.map.Files = map.Files;
 			this.map.SizeX = map.SizeX;
 			this.map.SizeY = map.SizeY;
 			this.map.Blocks = map.Blocks;
@@ -108,21 +105,7 @@ namespace BeeBot.Shared.ControllersComponents
         }
 		public void ChangeFile(BlockType type, string fileName)
 		{
-			switch (type)
-			{
-				case BlockType.RECTANGLE:
-					this.map.RectangleFile = fileName;
-					break;
-				case BlockType.REWARD:
-					this.map.RewardFile= fileName;
-					break;
-				case BlockType.BARRIER:
-					this.map.BarrierFile= fileName;
-					break;
-				case BlockType.FINISH:
-					this.map.FinishFile = fileName;
-					break;
-			}
+			this.map.Files[type] = fileName;
 			this.OnChange?.Invoke();
 		}
 
