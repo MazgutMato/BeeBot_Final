@@ -108,6 +108,11 @@ namespace BeeBot.Shared.ControllersComponents
 			this.map.Files[type] = fileName;
 			this.OnChange?.Invoke();
 		}
+		public void changeBLockEditor(BlockType type)
+		{
+			this.BlockEditor = type;
+			this.OnChange?.Invoke();
+		}
 
 		public event Action? OnChange;
 	}

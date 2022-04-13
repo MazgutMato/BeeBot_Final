@@ -7,7 +7,7 @@
 		<img src="@map.Files[Type]"
 			 style="width: 100%; max-width: 150px; height: auto; border: 5px solid
 									@(this.controllerMap.BlockEditor == Type ? "green" : "#555");"
-			 @onclick="() => controllerMap.BlockEditor = Type" />
+			 @onclick="() => controllerMap.changeBLockEditor(Type)" />
 	</div>
 	<label class="mt-2">Zmeň obrázok zadaním súboru</label>
 	@if (isLoading)
@@ -46,6 +46,16 @@
 	private IBrowserFile loadedFile;
 	private bool isLoading;
 	private bool? SuccesedLoad = null;
+
+	#region Overrides of ComponentBase
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+		this.controllerMap.OnChange += this.StateHasChanged;
+	}
+
+	#endregion
 
 	private void ResetFile()
 	{
