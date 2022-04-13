@@ -1,15 +1,31 @@
-﻿<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand">
-            <img src="images/logo.svg" alt="" width="60" height="60"/>
-        </a>
-        <button class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
+﻿
+<nav class="navbar navbar-expand-lg bg-dark">
+  <a class="navbar-brand" href=""><img src="images/logo.svg" alt="" width="60" height="60"/></a>
+  <button class="navbar-toggler btn btn-outline-warning" @onclick="ToggleNavMenu">
+    <i class="bi bi-list"></i>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+      <li class="nav-item" style="color: white;">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <span aria-hidden="true"></span> Domov
+        </NavLink>
+      </li>
+      <li class="nav-item">
+		<NavLink class="nav-link" href="game">
+			<span aria-hidden="true"></span> Spustiť hru
+		</NavLink>
+      </li>
+      <li class="nav-item">
+        <NavLink class="nav-link" href="mapEditor">
+            <span aria-hidden="true"></span> Upraviť mapu
+        </NavLink>
+      </li>
+    </ul>
+  </div>
 </nav>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+<div class="@Collapse" @onclick="ToggleNavMenu">
     <nav class="bg-dark navbar-dark">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
@@ -32,7 +48,7 @@
 @code {
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? Collapse => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
