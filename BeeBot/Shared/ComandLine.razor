@@ -41,12 +41,6 @@ else if (this.StateOfGame == false)
 	</div>
 	<div class="card-body border-bottom border-3 border-dark">
 		<div class="row d-flex p-3 justify-content-center">
-			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.ROTATELEFT))" />
-			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.MOVEFORWARD))" />
-			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.MOVEBACK))" />
-			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.ROTATERIGHT))" />
-		</div>
-		<div class="row d-flex p-3 justify-content-center">
 			<img src="images/commands/playl.svg" class="command command_pick" @onclick="async () => {
 							if (controllerCommands.CancellationToken == null)
 								await this.runProgram();
@@ -59,6 +53,12 @@ else if (this.StateOfGame == false)
 							controllerCommands.DeleteCommands();
 							this.StateOfGame = null;
 							}" />
+		</div>
+		<div class="row d-flex p-3 justify-content-center">
+			<img src="images/commands/rotate_left.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.ROTATELEFT))" />
+			<img src="images/commands/up.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.MOVEFORWARD))" />
+			<img src="images/commands/down.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.MOVEBACK))" />
+			<img src="images/commands/rotate_right.svg" class="command command_pick" @onclick="() => controllerCommands.AddCommand(new Command(CommandType.ROTATERIGHT))" />
 		</div>
 	</div>
 	<div class="card-body">

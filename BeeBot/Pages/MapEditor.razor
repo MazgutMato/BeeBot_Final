@@ -17,13 +17,31 @@
 			<div class="col-12 panel">
 				<div class="card m-3 border border-3 border-dark">
 					<div class="card-body">
-						<EditForm Model="@this.map">
-							<label class="d-flex justify-content-center mb-1">Popis mapy</label>
-							<InputText id="name" class="form-control" @bind-Value="this.map.Description" />
-							<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen popis mapy</button>
-						</EditForm>
+						<label class="d-flex justify-content-center mb-1">Popis mapy</label>
+						<textarea class="form-control" @bind="this.map.Description" />
 					</div>
 				</div>
+			</div>
+
+			<div class="row panel">
+			@*Zmena mena*@
+			<div class="col-12 col-xl-6">
+				<div class="card m-3 border border-3 border-dark">
+					<div class="card-body border-bottom border-3 border-dark">
+						<div class="row d-flex justify-content-center">
+							Názov mapy
+						</div>
+					</div>
+					<div class="card-body">
+						<input type="text" class="form-control" @bind="this.map.Name" />
+					</div>
+				</div>
+			</div>
+
+			@*Zmena mapy*@
+			<div class="col-12 col-xl-6">
+				<MapChange />
+			</div>
 			</div>
 
 			@*Nastavenia mapy*@
@@ -78,20 +96,6 @@
 
 		@*Edit mapy*@
 		<div class="col-xl-4 panel">
-
-			@*Zmena mena*@
-			<div class="card m-3 border border-3 border-dark">
-				<div class="card-body">
-					<EditForm Model="@this.map">
-						<label class="d-flex justify-content-center mb-1">Názov mapy</label>
-						<InputText id="name" class="form-control" @bind-Value="this.map.Name" />
-						<button type="submit" class="btn btn-dark btn-outline-warning mt-2">Zmen nazov mapy</button>
-					</EditForm>
-				</div>
-			</div>
-
-			@*Zmena mapy*@
-			<MapChange />
 
 			@*Zmena obrazkov mapy*@
 			<div class="card m-3 border border-3 border-dark">
