@@ -3,40 +3,20 @@
 @*end of game*@
 @if (this.StateOfGame == true)
 {
-	<div class="card m-3 border border-3 border-dark bg-success">
-		<div class="card-body border-3 border-dark">
-			<div class="row p-1">				
-				<div class="col-10 d-flex align-items-center justify-content-center">
-					Úspešne si prešiel mapou!
-				</div>
-				<div class="col-2 d-flex align-items-center justify-content-center">
-					<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => this.StateOfGame = null"></i>
-				</div>
-			</div>
-		</div>
-	</div>
+	<Message Success="true" Text="Úspešne si prešiel mapou!" />
+	StateOfGame = null;
 }
 else if (this.StateOfGame == false)
 {
-	<div class="card m-3 border border-3 border-dark bg-danger">
-		<div class="card-body border-3 border-dark">
-			<div class="row p-1">
-				<div class="col-10 d-flex align-items-center justify-content-center">
-					Skus to znovu!
-				</div>
-				<div class="col-2 d-flex align-items-center justify-content-center">
-					<i class="bi bi-x-circle" style="font-size: 2rem" @onclick="() => this.StateOfGame = null"></i>
-				</div>
-			</div>
-		</div>
-	</div>
+	<Message Success="false" Text="Skús to znovu!" />
+	StateOfGame = null;
 }
 
 @*command panel*@
 <div class="card m-3 border border-3 border-dark">
 	<div class="card-body border-bottom border-3 border-dark">
 		<div class="row d-flex justify-content-center p-1">
-			Zadaj prikazy
+			Zadaj príkazy
 		</div>
 	</div>
 	<div class="card-body border-bottom border-3 border-dark">
@@ -63,7 +43,7 @@ else if (this.StateOfGame == false)
 	</div>
 	<div class="card-body">
 		<div class="row d-flex justify-content-center p-1">
-			Zadane prikazy
+			Zadané príkazy
 		</div>
 		@if (controllerCommands.Commands.Any())
 		{
@@ -131,7 +111,6 @@ else if (this.StateOfGame == false)
 	{
 		this.StateOfGame = null;
 		this.StateOfGame =  await controllerCommands.StartAnimationAsync();
-		this.StateHasChanged();
 	}
 
 }

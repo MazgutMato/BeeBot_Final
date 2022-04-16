@@ -20,15 +20,13 @@
 		@if (SuccesedLoad == true)
 		{
 			<Message Success="true" Text="Obrázok bol úspešne zmenený!" />
-			@(SuccesedLoad = null)
-			;
+			SuccesedLoad = null;
 
 		}
 		else if (SuccesedLoad == false)
 		{
 			<Message Success="false" Text="Chyba pri načitani obrázku!" />
-			@(SuccesedLoad = null)
-			;
+			SuccesedLoad = null;
 		}
 		<button class="btn btn-dark btn-outline-warning mt-2"
 			@onclick='() => this.ResetFile()'>
