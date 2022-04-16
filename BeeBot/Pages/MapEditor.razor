@@ -3,6 +3,7 @@
 @inject PlayingArea playingArea
 @inject Map map
 @inject ControllerMap controllerMap
+@inject ControllerCommands controllerCommands
 
 <div class="nadpis p-2 m-3 border border-dark rounded border-3">
 	Uprav mapu
@@ -127,6 +128,7 @@
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
+		this.controllerCommands.CancellationToken?.Cancel();
 		this.controllerMap.OnChange += this.StateHasChanged;
 		this.bee.Reset();
 		this.playingArea.Mode = Mode.Editing;

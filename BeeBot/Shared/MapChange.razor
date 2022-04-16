@@ -47,6 +47,7 @@
 			this.SuccesedLoad = true;
 		} catch (Exception ex)
 		{
+			string Error = ex.Message;
 			this.SuccesedLoad = false;
 		}
 		this.isLoading = false;
