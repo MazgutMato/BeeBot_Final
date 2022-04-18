@@ -34,7 +34,7 @@
 	{
 		base.OnInitialized();
 		this.playingArea.Mode = Mode.Playing;
-		this.controllerCommands.CancellationToken?.Cancel();
+		this.controllerCommands.DeleteCommands();
 	}
 
 	#endregion

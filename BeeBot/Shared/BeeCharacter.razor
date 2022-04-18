@@ -42,7 +42,7 @@
 			animation: move @(this.bee.Animation.Time)000ms;
 			animation-iteration-count: 1;
 			transform-origin: @(this.bee.PositionX*100 + 50)px @(this.bee.PositionY*100 + 50)px;
-			transform: rotate(90deg);
+			transform: @(this.bee.Animation.Type == CommandType.MOVEFORWARD ? "rotate(90deg)" : "rotate(270deg)");
 		}
 
 		@@keyframes move {

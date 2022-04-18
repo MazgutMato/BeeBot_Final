@@ -100,7 +100,7 @@ namespace BeeBot.Shared.ControllersComponents
                                         break;
                                 }                                    
                             }
-                            this.Bee.Animation = new Move(path,time);
+                            this.Bee.Animation = new Move(path, CommandType.MOVEFORWARD, time);
                             break;
                         case CommandType.MOVEBACK:
                             if (this.Bee.MoveBack())
@@ -141,15 +141,15 @@ namespace BeeBot.Shared.ControllersComponents
                                         break;
                                 }
                             }
-                            this.Bee.Animation = new Move(path, time);
+                            this.Bee.Animation = new Move(path, CommandType.MOVEBACK, time);
                             break;
                         case CommandType.ROTATELEFT:
                             this.Bee.RotateLeft();
-                            this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, time);
+                            this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, CommandType.ROTATELEFT, time);
                             break;
                         case CommandType.ROTATERIGHT:
                             this.Bee.RotateRight();
-                            this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, time);
+                            this.Bee.Animation = new Rotate(oldAngle, (int)this.Bee.Rotation, CommandType.ROTATERIGHT, time);
                             break;
                     }
                     this.OnChanged?.Invoke();

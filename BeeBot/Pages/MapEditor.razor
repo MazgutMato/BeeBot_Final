@@ -123,8 +123,6 @@
 	public bool SuccessDownload { get; set; }
 	[Inject] IBlazorDownloadFileService BlazorDownloadFileService { get; set; }
 
-	#region Overrides of ComponentBase
-
 	protected override void OnInitialized()
 	{
 		base.OnInitialized();
@@ -133,8 +131,6 @@
 		this.bee.Reset();
 		this.playingArea.Mode = Mode.Editing;
 	}
-
-	#endregion
 
 	async Task DownloadMap()
 	{
