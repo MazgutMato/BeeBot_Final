@@ -2,35 +2,38 @@
 @inject ControllerCommands controllerCommands
 @inject HttpClient HttpClient
 
-<div class="nadpis p-2 m-3 border border-dark rounded border-3">
-	Vyber si zo zonamu máp
-</div>
-
-<div class="container pozadie border border-dark rounded border-3">
-	<div class="row d-flex justify-content-center align-items-center">
-		@if(ListOfMaps == null)
-		{
-			<p>Loading...</p>
-		} else
-		{
-			@foreach(Map map in ListOfMaps)
-			{
-				<div class="col-12 col-xl-4">
-					<MapSelect Map="@map" Image="@("maps/" + map.Name + ".png")"/>
-				</div>
-			}	
-		}		
-	</div>
-</div>
+@if (ListOfMaps == null)
+{
+    <div class="nadpis p-2 m-3 border border-dark rounded border-3">
+        Mapy sa načítavajú! Počkaj prosím.
+    </div>
+    <Spinner/>
+}
+else
+{
+    <div class="nadpis p-2 m-3 border border-dark rounded border-3">
+        Vyber si zo zonamu máp
+    </div>
+    <div class="container pozadie border border-dark rounded border-3">
+        <div class="row d-flex justify-content-center align-items-center">
+            @foreach (Map map in ListOfMaps)
+            {
+                <div class="col-12 col-xl-4">
+                    <MapSelect Map="@map" Image="@("maps/" + map.Name + ".png")" />
+                </div>
+            }
+        </div>
+    </div>
+}
 
 @code {
-	public List<Map>? ListOfMaps { get; set; }
-	protected override void OnInitialized()
-	{
-		this.controllerCommands.DeleteCommands();
-	}
-	protected override async Task OnInitializedAsync()
-	{
-		this.ListOfMaps = (await HttpClient.GetFromJsonAsync<List<Map>>("maps/listofmaps.map"));
-	}
+    public List<Map>? ListOfMaps { get; set; }
+    protected override void OnInitialized()
+    {
+        this.controllerCommands.DeleteCommands();
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        this.ListOfMaps = (await HttpClient.GetFromJsonAsync<List<Map>>("maps/listofmaps.map"));
+    }
 }

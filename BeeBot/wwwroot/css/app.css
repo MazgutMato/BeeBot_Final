@@ -73,3 +73,22 @@
 .command_remove:hover {
     filter: invert(11%) sepia(61%) saturate(5810%) hue-rotate(6deg) brightness(95%) contrast(106%);
 }
+
+.spinner {
+    border: 16px solid silver;
+    border-top: 16px solid #337AB7;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
